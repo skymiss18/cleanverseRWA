@@ -1,0 +1,84 @@
+name: Build Casper WASM Contracts
+
+on:
+  push:
+    paths:
+      - 'app/contracts-casper/**'
+      - '.github/workflows/build-casper-contracts.yml'
+  workflow_dispatch:   # allow manual trigger from GitHub UI
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build WASM on Ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+
+      - name: Cache Cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            app/contracts-casper/target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('app/contracts-casper/**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
+      - name: Install cargo-odra
+        run: cargo install cargo-odra --locked
+
+      # ── Build ComplianceOracle ────────────────────────────────────────────
+
+      - name: Build ComplianceOracle WASM
+        working-directory: app/contracts-casper/compliance-oracle
+        env:
+          ODRA_MODULE: ComplianceOracle
+          ODRA_BACKEND: casper
+        run: |
+          cargo odra build -b casper
+          ls -lh wasm/*.wasm 2>/dev/null || ls -lh target/wasm32-unknown-unknown/release/*.wasm
+
+      - name: Run ComplianceOracle unit tests
+        working-directory: app/contracts-casper/compliance-oracle
+        run: cargo odra test
+
+      # ── Build IdentityRegistry ────────────────────────────────────────────
+
+      - name: Build IdentityRegistry WASM
+        working-directory: app/contracts-casper/identity-registry
+        env:
+          ODRA_MODULE: IdentityRegistry
+          ODRA_BACKEND: casper
+        run: |
+          cargo odra build -b casper
+          ls -lh wasm/*.wasm 2>/dev/null || ls -lh target/wasm32-unknown-unknown/release/*.wasm
+
+      - name: Run IdentityRegistry unit tests
+        working-directory: app/contracts-casper/identity-registry
+        run: cargo odra test
+
+      # ── Collect artifacts ─────────────────────────────────────────────────
+
+      - name: Collect WASM files
+        run: |
+          mkdir -p dist/casper-contracts
+          find app/contracts-casper -name "*.wasm" -exec cp {} dist/casper-contracts/ \;
+          ls -lh dist/casper-contracts/
+
+      - name: Upload WASM artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: casper-contract-wasm
+          path: dist/casper-contracts/*.wasm
+          retention-days: 30

@@ -1,0 +1,20 @@
+[
+  {
+    "assetId": "nibt3",
+    "assetName": "NIBT3",
+    "deploymentId": "ISS-DYN-1784600527036",
+    "contractHash": "contract-e1b99cd7d1fa641985b1bc905386e899c92eb57fe4334378cb72225555f293d5",
+    "investorPublicKey": "02031282d32bbacc75eb84179aef5ce519364b5a0bf7701781437f558c793661597d",
+    "tokenCount": 20,
+    "refNum": "NIBT-MRVF94R9",
+    "paymentRef": "NIBT-MRVF94R9:a5a4ccca06b57d9e3bf5f6d0f2f3ce8bbc958f0759eaab42568bac4f447890a6",
+    "paymentTxHash": "a5a4ccca06b57d9e3bf5f6d0f2f3ce8bbc958f0759eaab42568bac4f447890a6",
+    "mintTxHash": "",
+    "paymentStatus": "Pending",
+    "mintStatus": "PendingFinality",
+    "pendingReason": "Casper payment transaction is not finalized or RPC lookup is unavailable yet: failed to send http request, details: Network Error",
+    "error": null,
+    "createdAt": "2026-07-22T01:56:02.043Z",
+    "updatedAt": "2026-07-22T01:56:02.043Z"
+  }
+]

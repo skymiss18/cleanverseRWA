@@ -1,0 +1,154 @@
+{
+  "version": "2026-05",
+  "source": "SFC Circular on Tokenisation of SFC-authorised Products (Nov 2023) + HKMA Fintech 2030",
+  "rules": [
+    {
+      "id": "SFC-001",
+      "category": "Issuer Eligibility",
+      "description": "Issuer must be an SFC-licensed corporation or exempted entity under SFO s.103.",
+      "keywords": ["licensed", "SFO", "issuer", "corporation"],
+      "weight": 20
+    },
+    {
+      "id": "SFC-002",
+      "category": "Investor Restriction",
+      "description": "Tokenised securities may only be distributed to Professional Investors as defined under SFO s.1 Sch 1.",
+      "keywords": ["professional investor", "PI", "accredited", "institutional"],
+      "weight": 20
+    },
+    {
+      "id": "SFC-003",
+      "category": "Asset Backing",
+      "description": "Each token must represent a legal claim on an underlying real-world asset with clear title documentation.",
+      "keywords": ["underlying asset", "title", "legal claim", "ownership", "deed"],
+      "weight": 15
+    },
+    {
+      "id": "SFC-004",
+      "category": "Custody",
+      "description": "The underlying assets must be held with a licensed custodian or trust company in Asia-Pacific or approved jurisdiction.",
+      "keywords": ["custodian", "trust", "custody", "safekeeping"],
+      "weight": 15
+    },
+    {
+      "id": "SFC-005",
+      "category": "Disclosure",
+      "description": "Offering document must include: risk factors, asset valuation methodology, redemption terms, fees, and conflict of interest.",
+      "keywords": ["risk", "valuation", "redemption", "fee", "conflict"],
+      "weight": 10
+    },
+    {
+      "id": "SFC-006",
+      "category": "AML/KYC",
+      "description": "Issuer must implement AMLO-compliant KYC procedures for all investors.",
+      "keywords": ["KYC", "AML", "AMLO", "identity verification", "due diligence"],
+      "weight": 10
+    },
+    {
+      "id": "SFC-007",
+      "category": "Technology Risk",
+      "description": "Smart contract code must be audited by an independent third party before deployment.",
+      "keywords": ["audit", "smart contract", "security", "vulnerability"],
+      "weight": 5
+    },
+    {
+      "id": "SFC-008",
+      "category": "Transferability",
+      "description": "Transfer restrictions must be enforced on-chain to ensure tokens can only be held by eligible investors.",
+      "keywords": ["transfer restriction", "whitelist", "on-chain enforcement", "eligible"],
+      "weight": 5
+    }
+  ],
+  "greenBondExtra": [
+    {
+      "id": "GB-001",
+      "category": "Green Certification",
+      "description": "Green bonds must be certified by a recognised second-party opinion provider (e.g. Sustainalytics, CICERO).",
+      "keywords": ["green", "ESG", "sustainable", "carbon", "certification", "second party opinion"],
+      "weight": 5
+    }
+  ],
+  "reitExtra": [
+    {
+      "id": "REIT-001",
+      "category": "REIT Code Compliance",
+      "description": "Tokenised REITs must comply with the SFC Code on Real Estate Investment Trusts.",
+      "keywords": ["REIT", "real estate", "property", "rental yield", "NAV"],
+      "weight": 5
+    }
+  ],
+  "tradeReceivableExtra": [
+    {
+      "id": "TR-001",
+      "category": "Counterparty Consistency",
+      "description": "Buyer and seller names in the invoice must exactly match the counterparties named in the trade contract.",
+      "keywords": ["buyer", "seller", "vendor", "purchaser", "counterparty", "supplier"],
+      "weight": 25
+    },
+    {
+      "id": "TR-002",
+      "category": "Amount Integrity",
+      "description": "Invoice amount must not exceed the contract agreed amount. Over-invoicing is a key AML/fraud red flag.",
+      "keywords": ["invoice amount", "contract value", "total amount", "payment amount", "face value"],
+      "weight": 25
+    },
+    {
+      "id": "TR-003",
+      "category": "Goods/Services Consistency",
+      "description": "Goods or services described in the invoice must match the contract scope. Vague descriptions are a compliance risk.",
+      "keywords": ["goods", "services", "product", "description", "specification", "scope"],
+      "weight": 20
+    },
+    {
+      "id": "TR-004",
+      "category": "RWA Token Sizing",
+      "description": "Total RWA token face value (totalSupply × unitPrice) must not exceed the invoice receivable amount. Over-issuance is prohibited.",
+      "keywords": ["token", "total supply", "unit price", "face value", "issuance", "tokenisation"],
+      "weight": 20
+    },
+    {
+      "id": "TR-005",
+      "category": "Document Chronology",
+      "description": "Invoice date must be on or after the contract signing date. Backdated invoices are a fraud indicator.",
+      "keywords": ["invoice date", "contract date", "signing date", "issued date", "date of contract"],
+      "weight": 10
+    }
+  ],
+  "bondExtra": [
+    {
+      "id": "BOND-001",
+      "category": "Bond Prospectus Disclosure",
+      "description": "Bond offering document must disclose coupon rate, payment frequency, maturity date, and principal repayment terms.",
+      "keywords": ["coupon", "interest rate", "maturity", "principal", "repayment", "redemption", "payment date"],
+      "weight": 20
+    },
+    {
+      "id": "BOND-002",
+      "category": "Credit Rating",
+      "description": "Issuer or bond series must disclose a credit rating from a recognised rating agency (Moody's, S&P, Fitch, or HKICRA).",
+      "keywords": ["credit rating", "Moody", "S&P", "Fitch", "rating agency", "investment grade"],
+      "weight": 15
+    },
+    {
+      "id": "BOND-003",
+      "category": "Trustee & Paying Agent",
+      "description": "Bond must appoint a licensed trustee and paying agent under the Trust Ordinance (Cap. 29), with clear roles and responsibilities disclosed.",
+      "keywords": ["trustee", "paying agent", "trust deed", "indenture", "bondholder", "agent"],
+      "weight": 15
+    },
+    {
+      "id": "BOND-004",
+      "category": "Negative Pledge & Covenants",
+      "description": "Offering document must disclose all financial covenants, negative pledge clauses, and events of default.",
+      "keywords": ["negative pledge", "covenant", "event of default", "cross-default", "financial ratio", "obligation"],
+      "weight": 10
+    },
+    {
+      "id": "BOND-005",
+      "category": "SFC Debt Securities Code",
+      "description": "Tokenised bonds must comply with the SFC Code on Unit Trusts and Mutual Funds (debt securities chapter) and the HKMA bond market guidelines.",
+      "keywords": ["debt securities", "bond", "debenture", "note", "fixed income", "SFC", "HKMA"],
+      "weight": 10
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+[
+  {
+    "referenceId": "NIBT-MSBK7BJR",
+    "issuanceId": "ISS-DYN-1785653804039",
+    "assetName": "NIBT5",
+    "walletAddress": "0xb1B70643589838F8febE3314ec95C56d22aef1C5",
+    "tokenCount": 20,
+    "chain": "ethereum",
+    "atokenAddress": "0xA678E08A9e6155A11D1df3f82a22A66276B2A9ef",
+    "status": "Minted",
+    "paymentStatus": "Confirmed",
+    "mintStatus": "Minted",
+    "treasuryAddress": "0xb1B70643589838F8febE3314ec95C56d22aef1C5",
+    "paymentCurrency": "ETH",
+    "expectedAmountWei": "20050000000000000",
+    "expectedAmount": "0.02005",
+    "eligibilityCheckedAt": "2026-08-02T08:50:01.319Z",
+    "verificationCode": 4,
+    "createdAt": "2026-08-02T08:50:03.027Z",
+    "updatedAt": "2026-08-02T08:53:57.882Z",
+    "paymentTxHash": "0x79ad34580d7c151e56f85ef3d13361fbf4cafe89e09640552a70780bc9e5766d",
+    "paymentBlockNumber": "11402335",
+    "paymentConfirmations": 1,
+    "cleanverseTransactionIndexed": false,
+    "mintTxHash": "0x8e8f3d0887d293302a9590eb82aa8704566d80f31bcd25e323f646be82da99df"
+  },
+  {
+    "referenceId": "CV-MSBJ2Z6N-WV6C1N",
+    "issuanceId": "ISS-DYN-1785653804039",
+    "assetName": "NIBT5",
+    "walletAddress": "0xb1B70643589838F8febE3314ec95C56d22aef1C5",
+    "tokenCount": 20,
+    "chain": "ethereum",
+    "atokenAddress": "0xA678E08A9e6155A11D1df3f82a22A66276B2A9ef",
+    "status": "VerifiedAllocationAccepted",
+    "mintStatus": "PendingAdminMinterRole",
+    "eligibilityCheckedAt": "2026-08-02T08:18:11.577Z",
+    "verificationCode": 4,
+    "createdAt": "2026-08-02T08:18:15.071Z"
+  }
+]

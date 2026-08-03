@@ -6,10 +6,46 @@ import {
   HARBOUR_RWA_TOKEN_ABI,
   tokenAddress,
 } from "@/lib/chain";
-import { encodeAbiParameters, formatUnits, keccak256, parseAbiParameters } from "viem";
+import { readATokenApplications } from "@/lib/cleanverse/atoken-store";
+import { encodeAbiParameters, formatUnits, getAddress, isAddress, keccak256, parseAbiParameters } from "viem";
 
 const FALLBACK_ASSET_NAME = "Harbour Infrastructure Bond Token (HIBT)";
 const HIBT_FACE_VALUE_USD = 1000;
+
+const ATOKEN_BALANCE_ABI = [
+  {
+    type: "function",
+    name: "balanceOf",
+    stateMutability: "view",
+    inputs: [{ type: "address", name: "account" }],
+    outputs: [{ type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "decimals",
+    stateMutability: "view",
+    inputs: [],
+    outputs: [{ type: "uint8" }],
+  },
+] as const;
+
+function latestIssuedAToken() {
+  return readATokenApplications()
+    .filter((application) => application.applyStatus === "ISSUED" && isAddress(application.atokenAddress ?? ""))
+    .sort((left, right) => Date.parse(right.lastSyncedAt) - Date.parse(left.lastSyncedAt))[0] ?? null;
+}
+
+function approvedUnitPrice(issuanceId: string | undefined) {
+  if (!issuanceId) return HIBT_FACE_VALUE_USD;
+  try {
+    const raw = readFileSync(join(process.cwd(), "data", "sfc-inbox.json"), "utf-8");
+    const records = JSON.parse(raw) as Array<{ id?: string; status?: string; unitPrice?: string | number }>;
+    const unitPrice = Number(records.find((record) => record.id === issuanceId && record.status === "Approved")?.unitPrice);
+    return Number.isFinite(unitPrice) && unitPrice > 0 ? unitPrice : HIBT_FACE_VALUE_USD;
+  } catch {
+    return HIBT_FACE_VALUE_USD;
+  }
+}
 
 /** 从 sfc-inbox 中找到最近已在链上注册的资产名，优先返回已注册资产 */
 async function findPrimaryAsset(configured: boolean): Promise<{ assetName: string; assetCode: string }> {
@@ -63,10 +99,6 @@ function buildAssetId(assetName: string): `0x${string}` {
 
 function formatUsd(n: number) {
   return `USD ${n.toLocaleString("en-US", { maximumFractionDigits: 2 })}`;
-}
-
-function formatHkd(n: number) {
-  return `HKD ${n.toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
 }
 
 type CouponHistoryRecord = {
@@ -185,37 +217,49 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Valid wallet query parameter is required" }, { status: 400 });
   }
 
-  const tokenAddr = tokenAddress();
-  const configured = tokenAddr !== "0x0000000000000000000000000000000000000000";
-  const { assetName: primaryAssetName, assetCode: primaryAssetCode } = await findPrimaryAsset(configured);
+  const harbourTokenAddr = tokenAddress();
+  const harbourConfigured = harbourTokenAddr !== "0x0000000000000000000000000000000000000000";
+  const atokenApplication = latestIssuedAToken();
+  const atokenAddress = atokenApplication?.atokenAddress ? getAddress(atokenApplication.atokenAddress) : null;
+  const fallbackAsset = await findPrimaryAsset(harbourConfigured);
+  const primaryAssetName = atokenApplication?.assetName ?? fallbackAsset.assetName;
+  const primaryAssetCode = atokenApplication?.tokenSymbol ?? fallbackAsset.assetCode;
+  const unitPriceUsd = approvedUnitPrice(atokenApplication?.issuanceId);
   const assetId = buildAssetId(primaryAssetName);
 
   let hibtTokens = 0;
   let livePosition = false;
 
-  if (configured) {
+  if (atokenAddress) {
     try {
-      const rawBalance = await publicClient.readContract({
-        address: tokenAddr,
-        abi: HARBOUR_RWA_TOKEN_ABI,
-        functionName: "balanceOf",
-        args: [wallet],
-      }) as bigint;
-      hibtTokens = Number(formatUnits(rawBalance, 18));
+      const [rawBalance, decimals] = await Promise.all([
+        publicClient.readContract({
+          address: atokenAddress,
+          abi: ATOKEN_BALANCE_ABI,
+          functionName: "balanceOf",
+          args: [wallet],
+        }),
+        publicClient.readContract({
+          address: atokenAddress,
+          abi: ATOKEN_BALANCE_ABI,
+          functionName: "decimals",
+        }),
+      ]);
+      hibtTokens = Number(formatUnits(rawBalance, decimals));
       livePosition = true;
     } catch {
       livePosition = false;
     }
   }
 
-  const { history: couponHistory, onChainHistory, claimEnabled } = await readCouponHistory(assetId, wallet, configured);
+  const { history: couponHistory, onChainHistory, claimEnabled } = await readCouponHistory(assetId, wallet, harbourConfigured);
   const nextCoupon = couponHistory.find((entry) => !entry.claimed && (entry.claimableAmountUsd > 0 || !entry.distributed))
     ?? couponHistory[couponHistory.length - 1];
   const upcomingPayoutUsd = hibtTokens * nextCoupon.amountPerTokenUsd;
-  const hibtValueUsd = hibtTokens * HIBT_FACE_VALUE_USD;
+  const hibtValueUsd = hibtTokens * unitPriceUsd;
 
   const liveHibtHolding = {
-    name: "Harbour Infrastructure Bond Token (HIBT)",
+    name: `${primaryAssetName} (${primaryAssetCode})`,
     type: "Bond",
     balance: hibtTokens.toLocaleString("en-US", { maximumFractionDigits: 2 }),
     value: formatUsd(hibtValueUsd),
@@ -236,14 +280,15 @@ export async function GET(req: NextRequest) {
       assetCode: primaryAssetCode,
       tokens: hibtTokens,
       livePosition,
-      faceValueUsd: HIBT_FACE_VALUE_USD,
+      faceValueUsd: unitPriceUsd,
       marketValueUsd: hibtValueUsd,
       nextCouponDate: nextCoupon.paymentDate,
       nextCouponPerTokenUsd: nextCoupon.amountPerTokenUsd,
       nextCouponPayoutUsd: upcomingPayoutUsd,
       source: onChainHistory ? "on-chain" : "estimated-schedule",
       claimEnabled,
-      couponToken: "CSPR",
+      couponToken: "Sepolia ETH",
+      tokenAddress: atokenAddress,
     },
     couponHistory: couponHistory.map((entry) => ({
       ...entry,
@@ -262,7 +307,7 @@ export async function GET(req: NextRequest) {
       canClaim: entry.onChain && claimEnabled && entry.claimableAmountUsd > 0,
       // Show "Fund Demo Coupon" whenever contract is configured and coupon is not yet distributed,
       // regardless of whether we got on-chain history (supports demo mode with estimated schedule).
-      canFund: configured && !entry.distributed && !entry.claimed,
+      canFund: harbourConfigured && !entry.distributed && !entry.claimed,
     })),
     holdings,
   });

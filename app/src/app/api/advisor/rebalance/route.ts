@@ -12,8 +12,8 @@ type RiskProfile = "conservative" | "moderate" | "aggressive";
 interface RebalanceRequest {
   walletAddress: `0x${string}`;
   riskProfile:   RiskProfile;
-  csprApyBps?:   number;  // optional override; fetched on-chain if not supplied
-  scsprApyBps?:  number;
+  ethApyBps?:    number;
+  ngbApyBps?:    number;
 }
 
 function getLLMClient(): OpenAI | null {
@@ -24,43 +24,41 @@ function getLLMClient(): OpenAI | null {
 }
 
 // ── Default target allocations by risk profile ────────────────────────────────
-// CSPR: native, liquid, no lock-up (lower risk, lower return ceiling)
-// sCSPR (Staked CSPR): native validator delegation yield (higher risk — unbonding period, slashing)
-const RISK_DEFAULTS: Record<RiskProfile, { csprPct: number; reason: string }> = {
-  conservative: { csprPct: 80, reason: "80% CSPR / 20% sCSPR — capital preservation priority" },
-  moderate:     { csprPct: 55, reason: "55% CSPR / 45% sCSPR — balanced risk/return" },
-  aggressive:   { csprPct: 25, reason: "25% CSPR / 75% sCSPR — maximise staking-correlated yield" },
+// NGB2026 provides fixed-income exposure; ETH provides liquid, higher-volatility exposure.
+const RISK_DEFAULTS: Record<RiskProfile, { ethPct: number; reason: string }> = {
+  conservative: { ethPct: 20, reason: "20% ETH / 80% NGB2026 - fixed-income priority" },
+  moderate:     { ethPct: 45, reason: "45% ETH / 55% NGB2026 - balanced risk/return" },
+  aggressive:   { ethPct: 70, reason: "70% ETH / 30% NGB2026 - higher crypto-market exposure" },
 };
 
 async function getAIAllocation(
   riskProfile: RiskProfile,
-  csprApy: number,
-  scsprApy: number
-): Promise<{ csprPct: number; rationale: string }> {
+  ethApy: number,
+  ngbApy: number
+): Promise<{ ethPct: number; rationale: string }> {
   const client = getLLMClient();
 
   if (!client) {
     // Rule-based fallback
     const d = RISK_DEFAULTS[riskProfile];
-    // Slight dynamic adjustment: if sCSPR APY > CSPR APY by >100bps, shift 5% more to sCSPR
-    let adjusted = d.csprPct;
-    if (scsprApy - csprApy > 100 && riskProfile !== "conservative") adjusted = Math.max(20, adjusted - 5);
-    if (csprApy - scsprApy > 100) adjusted = Math.min(90, adjusted + 5);
+    let adjusted = d.ethPct;
+    if (ngbApy - ethApy > 100 && riskProfile !== "aggressive") adjusted = Math.max(10, adjusted - 5);
+    if (ethApy - ngbApy > 100 && riskProfile !== "conservative") adjusted = Math.min(80, adjusted + 5);
     return {
-      csprPct: adjusted,
-      rationale: `[rule-based] ${d.reason}. CSPR ${(csprApy / 100).toFixed(2)}% APY, sCSPR ${(scsprApy / 100).toFixed(2)}% APY.`,
+      ethPct: adjusted,
+      rationale: `[rule-based] ${d.reason}. ETH ${(ethApy / 100).toFixed(2)}% APY, NGB2026 ${(ngbApy / 100).toFixed(2)}% coupon.`,
     };
   }
 
-  const prompt = `You are a DeFi yield optimizer for an institutional RWA platform on Casper Network.
+  const prompt = `You are a DeFi yield optimizer for an institutional RWA platform on Ethereum Sepolia.
 Current APY rates:
-- CSPR (native token, liquid, no lock-up): ${(csprApy / 100).toFixed(2)}% APY
-- sCSPR (Staked CSPR, native validator delegation yield): ${(scsprApy / 100).toFixed(2)}% APY
+- ETH (liquid Ethereum asset with staking yield): ${(ethApy / 100).toFixed(2)}% APY
+- NGB2026 (regulated tokenized green bond): ${(ngbApy / 100).toFixed(2)}% coupon
 
 Investor risk profile: ${riskProfile}
 
-Determine the optimal % allocation to CSPR (0-100). The rest goes to sCSPR.
-Respond ONLY with valid JSON: { "csprPct": <integer 0-100>, "rationale": "<max 100 chars>" }`;
+Determine the optimal % allocation to ETH (0-100). The rest goes to NGB2026.
+Respond ONLY with valid JSON: { "ethPct": <integer 0-100>, "rationale": "<max 100 chars>" }`;
 
   try {
     const res = await client.chat.completions.create({
@@ -72,11 +70,11 @@ Respond ONLY with valid JSON: { "csprPct": <integer 0-100>, "rationale": "<max 1
     });
     const text = res.choices[0]?.message?.content ?? "{}";
     const parsed = JSON.parse(text);
-    const csprPct = Math.min(100, Math.max(0, parseInt(parsed.csprPct ?? 50)));
-    return { csprPct, rationale: parsed.rationale ?? "AI allocation" };
+    const ethPct = Math.min(100, Math.max(0, parseInt(parsed.ethPct ?? 45)));
+    return { ethPct, rationale: parsed.rationale ?? "AI allocation" };
   } catch {
     const d = RISK_DEFAULTS[riskProfile];
-    return { csprPct: d.csprPct, rationale: d.reason };
+    return { ethPct: d.ethPct, rationale: d.reason };
   }
 }
 
@@ -84,9 +82,9 @@ Respond ONLY with valid JSON: { "csprPct": <integer 0-100>, "rationale": "<max 1
 // POST /api/advisor/rebalance
 // Body: { walletAddress, riskProfile }
 // 1. Reads current APY from YieldAggregator on-chain (or uses defaults)
-// 2. AI determines optimal CSPR/sCSPR split
+// 2. AI determines optimal ETH/NGB2026 split
 // 3. Calls autoRebalance() on-chain
-// 4. Returns { csprPct, rationale, txHash }
+// 4. Returns { ethPct, rationale, txHash }
 export async function POST(req: NextRequest) {
   try {
     const body: RebalanceRequest = await req.json();
@@ -104,8 +102,8 @@ export async function POST(req: NextRequest) {
     const isConfigured = privateKey && yieldAddr !== "0x0000000000000000000000000000000000000000";
 
     // ── 1. Get current APY rates ────────────────────────────────────────────
-    let csprApy = body.csprApyBps ?? 500;   // default 5.00%
-    let scsprApy = body.scsprApyBps ?? 1085; // default 10.85% (cspr.live network APY)
+    let ethApy = body.ethApyBps ?? 320;
+    let ngbApy = body.ngbApyBps ?? 550;
 
     if (isConfigured) {
       try {
@@ -114,13 +112,14 @@ export async function POST(req: NextRequest) {
           abi: YIELD_AGGREGATOR_ABI,
           functionName: "getYieldInfo",
         }) as readonly [number, number, bigint];
-        csprApy = info[0];
-        scsprApy = info[1];
+        ngbApy = info[0];
+        ethApy = info[1];
       } catch { /* use defaults */ }
     }
 
     // ── 2. AI computes allocation ───────────────────────────────────────────
-    const { csprPct, rationale } = await getAIAllocation(riskProfile, csprApy, scsprApy);
+    const { ethPct, rationale } = await getAIAllocation(riskProfile, ethApy, ngbApy);
+    const ngbPct = 100 - ethPct;
 
     // ── 3. Submit rebalance on-chain ────────────────────────────────────────
     let txHash: string | null = null;
@@ -135,7 +134,7 @@ export async function POST(req: NextRequest) {
           address: yieldAddr,
           abi: YIELD_AGGREGATOR_ABI,
           functionName: "autoRebalance",
-          args: [walletAddress, csprPct, rationale.slice(0, 120)],
+          args: [walletAddress, ngbPct, rationale.slice(0, 120)],
           maxFeePerGas: safeGasPrice,
           maxPriorityFeePerGas: safeGasPrice,
         });
@@ -149,15 +148,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       walletAddress,
       riskProfile,
-      csprPct,
-      scsprPct:    100 - csprPct,
-      csprApy:   (csprApy / 100).toFixed(2) + "%",
-      scsprApy:  (scsprApy / 100).toFixed(2) + "%",
-      weightedApy: ((csprPct * csprApy + (100 - csprPct) * scsprApy) / 10000).toFixed(2) + "%",
+      ethPct,
+      ngbPct,
+      ethApy: (ethApy / 100).toFixed(2) + "%",
+      ngbApy: (ngbApy / 100).toFixed(2) + "%",
+      weightedApy: ((ethPct * ethApy + ngbPct * ngbApy) / 10000).toFixed(2) + "%",
       rationale,
       onChain,
       txHash,
-      explorerUrl: txHash ? `https://testnet.cspr.live/deploy/${txHash}` : null,
+      explorerUrl: txHash ? `https://sepolia.etherscan.io/tx/${txHash}` : null,
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown error";
@@ -175,7 +174,7 @@ export async function GET(req: NextRequest) {
 
   if (!isConfigured) {
     return NextResponse.json({
-      csprApy: "5.00%", scsprApy: "10.85%",
+      ethApy: "3.20%", ngbApy: "5.50%",
       lastUpdate: null, lastRebalance: null,
       note: "Contracts not yet deployed",
     });
@@ -200,9 +199,10 @@ export async function GET(req: NextRequest) {
         if (r[0] > BigInt(0)) {
           lastRebalanceData = {
             timestamp:   new Date(Number(r[0]) * 1000).toISOString(),
-            csprShares:  r[1].toString(),
-            scsprShares: r[2].toString(),
-            csprPct:     r[3],
+            ngbShares:   r[1].toString(),
+            ethShares:   r[2].toString(),
+            ngbPct:      r[3],
+            ethPct:      100 - r[3],
             aiRationale: r[4],
           };
         }
@@ -210,8 +210,8 @@ export async function GET(req: NextRequest) {
     }
 
     return NextResponse.json({
-      csprApy:       (info[0] / 100).toFixed(2) + "%",
-      scsprApy:      (info[1] / 100).toFixed(2) + "%",
+      ngbApy:        (info[0] / 100).toFixed(2) + "%",
+      ethApy:        (info[1] / 100).toFixed(2) + "%",
       lastUpdate:    new Date(Number(info[2]) * 1000).toISOString(),
       lastRebalance: lastRebalanceData,
     });

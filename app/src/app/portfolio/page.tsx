@@ -156,7 +156,7 @@ function isEvmAddress(value: string | null): value is `0x${string}` {
 
 export default function PortfolioPage() {
   const { wallet: connectedWallet, connect: connectEthereumWallet, connecting: ethereumConnecting } = useWallet();
-  const [wallet, setWallet] = useState<string | null>(null);
+  const wallet = connectedWallet;
   const [walletConnecting, setWalletConnecting] = useState(false);
   const [walletError, setWalletError] = useState<string | null>(null);
   const connected = !!wallet;
@@ -176,7 +176,7 @@ export default function PortfolioPage() {
   // ── Yield rebalance panel ───────────────────────────────────────────────────
   const [rebalancing,      setRebalancing]      = useState(false);
   const [rebalanceResult,  setRebalanceResult]  = useState<{
-    csprPct: number; scsprPct: number; csprApy: string; scsprApy: string;
+    ethPct: number; ngbPct: number; ethApy: string; ngbApy: string;
     weightedApy: string; rationale: string; txHash: string | null; onChain: boolean;
   } | null>(null);
   const [rebalanceError,   setRebalanceError]   = useState<string | null>(null);
@@ -192,10 +192,6 @@ export default function PortfolioPage() {
     }
     return data as PortfolioSummary;
   }
-
-  useEffect(() => {
-    setWallet(connectedWallet);
-  }, [connectedWallet]);
 
   useEffect(() => {
     if (!wallet || !walletIsEvm) {
@@ -710,7 +706,7 @@ export default function PortfolioPage() {
             <div className="flex items-center justify-between mb-4">
               <div>
                 <div className="text-sm font-semibold text-slate-900">Ethereum Yield Routing</div>
-                <div className="text-[11px] text-slate-600 mt-0.5">MNT + ERC-20 yield positions · AI-driven auto-rebalance</div>
+                <div className="text-[11px] text-slate-600 mt-0.5">ETH + NGB2026 positions · AI-driven allocation on Ethereum Sepolia</div>
               </div>
               <div className="flex items-center gap-2">
                 <div className="flex gap-0 rounded overflow-hidden" style={{ border: "1px solid rgba(0,0,0,0.10)" }}>
@@ -738,8 +734,8 @@ export default function PortfolioPage() {
             {!rebalanceResult ? (
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { label: "MNT",   sublabel: "Native gas asset · liquid",          apy: "5.00%",  pct: 55, color: "#1a56db", tag: "Mantle native token" },
-                  { label: "ERC-20", sublabel: "Tokenized yield position",          apy: "10.85%", pct: 45, color: "#8b5cf6", tag: "Ethereum-compatible asset" },
+                  { label: "ETH", sublabel: "Ethereum native asset · liquid", apy: "3.20%", pct: 45, color: "#1a56db", tag: "Sepolia ETH" },
+                  { label: assetCode, sublabel: "Tokenized green bond · fixed coupon", apy: "5.50%", pct: 55, color: "#16a34a", tag: "ERC-20 A-Token" },
                 ].map((item) => (
                   <div key={item.label} className="rounded p-4" style={{ background: "#ffffff", border: "1px solid rgba(0,0,0,0.10)" }}>
                     <div className="flex items-center justify-between mb-2">
@@ -768,8 +764,8 @@ export default function PortfolioPage() {
                 )}
                 <div className="grid grid-cols-2 gap-4">
                   {[
-                    { label: "MNT",    pct: rebalanceResult.csprPct,  apy: rebalanceResult.csprApy,  color: "#1a56db" },
-                    { label: "ERC-20", pct: rebalanceResult.scsprPct, apy: rebalanceResult.scsprApy, color: "#8b5cf6" },
+                    { label: "ETH", pct: rebalanceResult.ethPct, apy: rebalanceResult.ethApy, color: "#1a56db" },
+                    { label: assetCode, pct: rebalanceResult.ngbPct, apy: rebalanceResult.ngbApy, color: "#16a34a" },
                   ].map((item) => (
                     <div key={item.label} className="rounded p-4" style={{ background: "#ffffff", border: "1px solid rgba(0,0,0,0.10)" }}>
                       <div className="flex justify-between items-center mb-2">
@@ -881,8 +877,8 @@ export default function PortfolioPage() {
               </div>
               <div className="px-5 pt-2 pb-4 space-y-4">
                 {[
-                  { name: "MNT",    desc: "Native gas asset · liquid",             apy: "5.0%",  share: "55%" },
-                  { name: "ERC-20", desc: "Tokenized yield position",              apy: "10.85%", share: "45%" },
+                  { name: "ETH", desc: "Ethereum native asset · staking yield", apy: "3.20%", share: "45%" },
+                  { name: assetCode, desc: "Tokenized green bond · fixed coupon", apy: "5.50%", share: "55%" },
                 ].map((y) => (
                   <div key={y.name} className="flex items-center justify-between">
                     <div>

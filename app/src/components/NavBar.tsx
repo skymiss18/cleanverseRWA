@@ -198,7 +198,7 @@ export default function NavBar() {
         className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 flex items-center justify-between"
         style={{ height: "52px" }}
       >
-        {/* Left: logo + role indicator + workflow menu */}
+        {/* Left: logo + workflow menu */}
         <div className="flex items-center gap-0.5 sm:gap-2 min-w-0">
           {/* Logo */}
           <Link href="/" className="hidden sm:flex items-center gap-2.5 shrink-0 mr-3 group">
@@ -215,19 +215,6 @@ export default function NavBar() {
             </span>
           </Link>
 
-          {/* Role Indicator (read-only) */}
-          <div className="h-10 flex items-center gap-2 rounded-md bg-white px-2.5" style={{ border: "1px solid rgba(0,0,0,0.14)" }}>
-            <span
-              className="w-7 h-7 rounded flex items-center justify-center text-[10px] font-bold text-white shrink-0"
-              style={{ background: currentRole.accentColor }}
-            >
-              {currentRole.code}
-            </span>
-            <span className="block min-w-[54px] sm:min-w-[76px] text-[12px] sm:text-[13px] font-semibold text-slate-800">
-              {currentRole.label}
-            </span>
-          </div>
-
           {/* Workflow Dropdown */}
           <RoleDropdown
             label={`${currentRole.label} Workflow`}
@@ -237,8 +224,19 @@ export default function NavBar() {
           />
         </div>
 
-        {/* Right: wallet + logout */}
+        {/* Right: role status + wallet + logout */}
         <div className="hidden sm:flex items-center gap-3">
+          <div
+            className="flex items-center gap-2 pr-4 mr-1"
+            style={{ borderRight: "1px solid rgba(0,0,0,0.12)" }}
+            aria-label={`Current role: ${currentRole.label}`}
+          >
+            <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: currentRole.accentColor }} />
+            <span className="leading-tight">
+              <span className="block text-[9px] font-semibold uppercase tracking-wider text-slate-400">Role</span>
+              <span className="block text-[12px] font-semibold text-slate-700">{currentRole.label}</span>
+            </span>
+          </div>
           {wallet ? (
             <>
               <button

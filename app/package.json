@@ -28,18 +28,18 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^26",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "binaryen": "^130.0.0",
+    "binaryen": "^131.0.0",
     "circom2": "^0.2.23",
     "circomlib": "^2.0.5",
     "cross-env": "^10.1.0",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.6",
+    "eslint": "^10",
+    "eslint-config-next": "16.3.0",
     "tailwindcss": "^4",
-    "tsx": "^4.23.1",
-    "typescript": "^5"
+    "tsx": "^4.23.7",
+    "typescript": "^7"
   },
   "overrides": {
     "ws": "8.21.0"

@@ -19,7 +19,7 @@
     "casper-js-sdk": "^5.0.12",
     "next": "16.2.6",
     "openai": "^6.37.0",
-    "pdfjs-dist": "^5.7.284",
+    "pdfjs-dist": "^6.2.108",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "snarkjs": "^0.7.6",

@@ -1,0 +1,187 @@
+﻿@import "tailwindcss";
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ── Design tokens — Harbour Institutional Light ───────────────────────────── */
+:root {
+  /* Backgrounds — warm cream inspired by Superstate */
+  --c-bg:      #f7f5f0;
+  --c-surface: #f0ede6;
+  --c-card:    #ffffff;
+  --c-raised:  #faf9f7;
+
+  /* Borders */
+  --c-border:  rgba(0, 0, 0, 0.07);
+  --c-border2: rgba(0, 0, 0, 0.11);
+  --c-border3: rgba(0, 0, 0, 0.20);
+
+  /* Brand blue — clean institutional */
+  --c-blue:    #1a56db;
+  --c-blue2:   #2563eb;
+  --c-blue3:   #3b82f6;
+
+  /* Text — near-black on cream */
+  --c-text:    #111111;
+  --c-text2:   #555555;
+  --c-text3:   #999999;
+
+  /* Status */
+  --c-green:   #16a34a;
+  --c-amber:   #d97706;
+  --c-red:     #dc2626;
+  --c-violet:  #7c3aed;
+  --c-teal:    #0d9488;
+}
+
+/* ── Base ──────────────────────────────────────────────────────────────────── */
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Serif headings — elegant institutional feel like Superstate */
+h1, h2, h3 {
+  font-family: 'Lora', 'Georgia', 'Times New Roman', serif;
+  color: var(--c-text);
+  font-weight: 600;
+}
+
+code, pre, kbd, samp {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', ui-monospace, monospace;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.28); }
+
+/* ── Selection ─────────────────────────────────────────────────────────────── */
+::selection { background: rgba(26,86,219,0.15); color: var(--c-text); }
+
+/* ── Heading accent — subtle gradient on key hero text ─────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, #111111 0%, #444444 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-gradient-blue {
+  background: linear-gradient(135deg, #1a56db 0%, #2563eb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glass surfaces (nav) ──────────────────────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  border: 1px solid var(--c-border2);
+}
+
+/* ── Cards ─────────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--c-card);
+  border: 1px solid var(--c-border2);
+  border-radius: 12px;
+  transition: box-shadow 0.2s ease;
+}
+.card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Buttons ───────────────────────────────────────────────────────────────── */
+/* Primary — solid near-black like Flux Finance "Log In" button */
+.btn-primary {
+  background: #111111;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.btn-primary:hover {
+  opacity: 0.82;
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Outline — transparent with visible border */
+.btn-outline {
+  background: transparent;
+  color: var(--c-text);
+  border: 1px solid var(--c-border3);
+  border-radius: 8px;
+  transition: all 0.15s ease;
+}
+.btn-outline:hover {
+  background: var(--c-surface);
+  border-color: var(--c-text);
+}
+
+/* ── Animations ────────────────────────────────────────────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fade-up 0.45s cubic-bezier(0.22,1,0.36,1) both; }
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+.animate-pulse-slow { animation: pulse-slow 2.2s ease-in-out infinite; }
+
+/* ── Hover lift — subtle shadow on hover (replaces dark glow) ──────────────── */
+.glow-hover {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.glow-hover:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.10);
+  transform: translateY(-2px);
+}
+
+/* ── Score / progress bar ──────────────────────────────────────────────────── */
+.score-track {
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+.score-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--c-blue);
+  transition: width 0.65s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* ── Tag / badge ───────────────────────────────────────────────────────────── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* ── Divider ───────────────────────────────────────────────────────────────── */
+.section-divider { border-top: 1px solid var(--c-border); }
+
+/* ── Tailwind class remaps for light theme ─────────────────────────────────── */
+/* These classes auto-fix any Tailwind color utilities used in inner pages */
+.text-gray-900  { color: var(--c-text); }
+.text-slate-900 { color: var(--c-text); }
+.hover\:text-slate-900:hover { color: var(--c-text); }
+.text-slate-600 { color: var(--c-text2); }
+.text-slate-700 { color: var(--c-text2); }

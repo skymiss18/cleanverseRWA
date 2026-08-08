@@ -1,0 +1,456 @@
+[
+  {
+    "id": "KYC-2026-001",
+    "submittedAt": "2026-07-20T13:56:00.239Z",
+    "fullName": "json",
+    "email": "json@gmail.cxom",
+    "dateOfBirth": "19990-01-01",
+    "phone": "8888888888",
+    "occupation": "director/it company",
+    "jurisdiction": "HK",
+    "investorType": "individual",
+    "subscriptionTokens": 200,
+    "walletAddress": "02031282d32bbacc75eb84179aef5ce519364b5a0bf7701781437f558c793661597d",
+    "pepDeclaration": true,
+    "docs": {
+      "govId": "kyc-demo-gov-id.pdf",
+      "proofAddr": "kyc-demo-proof-of-address.pdf",
+      "piEvidence": "kyc-demo-proof-of-address.pdf"
+    },
+    "assetDeploymentId": "ISS-DYN-1784555550758",
+    "assetId": "nibt1",
+    "assetName": "NIBT1",
+    "status": "approved",
+    "aiScore": 80,
+    "aiRiskScore": 80,
+    "riskBand": 2,
+    "aiSummary": "KYC review passed with score 80/100. All mandatory documents verified. Note: PEP declaration requires enhanced review.",
+    "reviewNotes": "",
+    "txHash": "1ba21671195e5a54e568eda2e40fcbe13f080585bc47b8744ef2d6c7f02e71b6",
+    "kycExpiry": 1816091788,
+    "credentialCommitment": "7941ca7fa540b13b401f551e78d9910f528930b211b8722150f48d354fcc332a",
+    "nullifierHash": "fa07c8592ea5cd2c14925df7a9fa9cb73f2d462794f90993fdc8b32bcb4d588a",
+    "proofHash": "e374402550ee64a28074f553f3e6740512a16e5ddfd505ef7fbbb076102fb96e",
+    "monitoringStatus": "issue",
+    "lastScreenedAt": "2026-07-20T13:56:28.175Z",
+    "agentReason": "No active privacy-preserving credential found; issue required.",
+    "aiBreakdown": [
+      {
+        "ruleId": "KYC-01",
+        "ruleName": "Identity Verification",
+        "score": 20,
+        "maxScore": 20,
+        "details": "Government ID document submitted and format verified."
+      },
+      {
+        "ruleId": "KYC-02",
+        "ruleName": "PEP & Sanctions Screening",
+        "score": 0,
+        "maxScore": 20,
+        "details": "Applicant declared as Politically Exposed Person (PEP). Enhanced due diligence required per AMLO Cap.615 s.20."
+      },
+      {
+        "ruleId": "KYC-03",
+        "ruleName": "PI Eligibility (SFO Schedule 1)",
+        "score": 20,
+        "maxScore": 20,
+        "details": "PI eligibility evidence document submitted."
+      },
+      {
+        "ruleId": "KYC-04",
+        "ruleName": "Source of Funds Declaration",
+        "score": 20,
+        "maxScore": 20,
+        "details": "Subscription below 500 tokens — source of funds declaration not mandatory."
+      },
+      {
+        "ruleId": "KYC-05",
+        "ruleName": "Proof of Address",
+        "score": 20,
+        "maxScore": 20,
+        "details": "Valid proof of address document submitted."
+      }
+    ],
+    "zkProof": "eyJjaXJjdWl0SWQiOiJreWMtY29tbWl0bWVudC12MSIsImNvbW1pdG1lbnQiOiI3OTQxY2E3ZmE1NDBiMTNiNDAxZjU1MWU3OGQ5OTEwZjUyODkzMGIyMTFiODcyMjE1MGY0OGQzNTRmY2MzMzJhIiwibnVsbGlmaWVySGFzaCI6ImZhMDdjODU5MmVhNWNkMmMxNDkyNWRmN2E5ZmE5Y2I3M2YyZDQ2Mjc5NGY5MDk5M2ZkYzhiMzJiY2I0ZDU4OGEiLCJwdWJsaWNTaWduYWxzIjpbIjAyMDMxMjgyZDMyYmJhY2M3NWViODQxNzlhZWY1Y2U1MTkzNjRiNWEwYmY3NzAxNzgxNDM3ZjU1OGM3OTM2NjE1OTdkIiwiSEsiLCJpbmRpdmlkdWFsIiwiMTgxNjA5MTc4OCIsIjIiLCIxIl0sInNjaGVtZSI6InprLXJlYWR5LWhhc2giLCJ2ZXJpZmljYXRpb25LZXlJZCI6ImxvY2FsLWhhc2gtdjEifQ==",
+    "zkPublicSignals": [
+      "02031282d32bbacc75eb84179aef5ce519364b5a0bf7701781437f558c793661597d",
+      "HK",
+      "individual",
+      "1816091788",
+      "2",
+      "1"
+    ],
+    "zkProofScheme": "zk-ready-hash",
+    "zkCircuitId": "kyc-commitment-v1",
+    "zkVerificationKeyId": "local-hash-v1",
+    "proofVerified": true,
+    "zkVerifiedAt": "2026-07-20T13:56:28.175Z",
+    "agentActionLog": [
+      {
+        "ts": "2026-07-20T13:56:28.178Z",
+        "action": "issue",
+        "mode": "manual",
+        "reason": "No active privacy-preserving credential found; issue required."
+      }
+    ],
+    "network": "Sepolia Testnet",
+    "explorerUrl": "https://testnet.cspr.live/deploy/1ba21671195e5a54e568eda2e40fcbe13f080585bc47b8744ef2d6c7f02e71b6",
+    "signerPublicKey": "02031282d32bbacc75eb84179aef5ce519364b5a0bf7701781437f558c793661597d",
+    "pendingReason": null,
+    "chainStatus": "Submitted"
+  },
+  {
+    "id": "KYC-2026-002",
+    "submittedAt": "2026-07-22T00:50:30.335Z",
+    "fullName": "json",
+    "email": "json@gmail.com",
+    "dateOfBirth": "1990-01-01",
+    "phone": "88888888",
+    "occupation": "director,it company",
+    "jurisdiction": "HK",
+    "investorType": "individual",
+    "subscriptionTokens": 200,
+    "walletAddress": "02031282d32bbacc75eb84179aef5ce519364b5a0bf7701781437f558c793661597d",
+    "pepDeclaration": true,
+    "docs": {
+      "govId": "kyc-demo-gov-id.pdf",
+      "proofAddr": "kyc-demo-proof-of-address.pdf",
+      "piEvidence": "kyc-demo-pi-evidence.pdf"
+    },
+    "assetDeploymentId": "ISS-DYN-1784600527036",
+    "assetId": "nibt3",
+    "assetName": "NIBT3",
+    "status": "ai_scored",
+    "aiScore": 80,
+    "aiRiskScore": 80,
+    "riskBand": 2,
+    "aiSummary": "KYC review passed with score 80/100. All mandatory documents verified. Note: PEP declaration requires enhanced review.",
+    "reviewNotes": "",
+    "txHash": null,
+    "kycExpiry": 1816217447,
+    "credentialCommitment": "f0565ce119ca2c043db40e725bd227cd75ea5e4aa3bd45a17688e20ef7117578",
+    "nullifierHash": "9346f6a03fbac9527b0a48b45566512df17d80ab5e164422919f142fbf880960",
+    "proofHash": "3bd4e2409e8d7249ea07e90e973bf71351f950d065961c3c794253fa60e271b2",
+    "monitoringStatus": "manual_review",
+    "lastScreenedAt": "2026-07-22T01:46:12.982Z",
+    "agentReason": "PEP declaration requires manual compliance review.",
+    "aiBreakdown": [
+      {
+        "ruleId": "KYC-01",
+        "ruleName": "Identity Verification",
+        "score": 20,
+        "maxScore": 20,
+        "details": "Government ID document submitted and format verified."
+      },
+      {
+        "ruleId": "KYC-02",
+        "ruleName": "PEP & Sanctions Screening",
+        "score": 0,
+        "maxScore": 20,
+        "details": "Applicant declared as Politically Exposed Person (PEP). Enhanced due diligence required per AMLO Cap.615 s.20."
+      },
+      {
+        "ruleId": "KYC-03",
+        "ruleName": "PI Eligibility (SFO Schedule 1)",
+        "score": 20,
+        "maxScore": 20,
+        "details": "PI eligibility evidence document submitted."
+      },
+      {
+        "ruleId": "KYC-04",
+        "ruleName": "Source of Funds Declaration",
+        "score": 20,
+        "maxScore": 20,
+        "details": "Subscription below 500 tokens — source of funds declaration not mandatory."
+      },
+      {
+        "ruleId": "KYC-05",
+        "ruleName": "Proof of Address",
+        "score": 20,
+        "maxScore": 20,
+        "details": "Valid proof of address document submitted."
+      }
+    ],
+    "zkProof": "eyJjaXJjdWl0SWQiOiJreWMtY29tbWl0bWVudC12MSIsImNvbW1pdG1lbnQiOiJmMDU2NWNlMTE5Y2EyYzA0M2RiNDBlNzI1YmQyMjdjZDc1ZWE1ZTRhYTNiZDQ1YTE3Njg4ZTIwZWY3MTE3NTc4IiwibnVsbGlmaWVySGFzaCI6IjkzNDZmNmEwM2ZiYWM5NTI3YjBhNDhiNDU1NjY1MTJkZjE3ZDgwYWI1ZTE2NDQyMjkxOWYxNDJmYmY4ODA5NjAiLCJwdWJsaWNTaWduYWxzIjpbIjAyMDMxMjgyZDMyYmJhY2M3NWViODQxNzlhZWY1Y2U1MTkzNjRiNWEwYmY3NzAxNzgxNDM3ZjU1OGM3OTM2NjE1OTdkIiwiSEsiLCJpbmRpdmlkdWFsIiwiMTgxNjIxNzQ0NyIsIjIiLCIwIl0sInNjaGVtZSI6InprLXJlYWR5LWhhc2giLCJ2ZXJpZmljYXRpb25LZXlJZCI6ImxvY2FsLWhhc2gtdjEifQ==",
+    "zkPublicSignals": [
+      "02031282d32bbacc75eb84179aef5ce519364b5a0bf7701781437f558c793661597d",
+      "HK",
+      "individual",
+      "1816217447",
+      "2",
+      "0"
+    ],
+    "zkProofScheme": "zk-ready-hash",
+    "zkCircuitId": "kyc-commitment-v1",
+    "zkVerificationKeyId": "local-hash-v1",
+    "proofVerified": true,
+    "zkVerifiedAt": "2026-07-22T01:46:12.982Z",
+    "agentActionLog": [
+      {
+        "ts": "2026-07-22T00:50:47.959Z",
+        "action": "issue",
+        "mode": "manual",
+        "reason": "No active privacy-preserving credential found; issue required."
+      },
+      {
+        "ts": "2026-07-22T01:46:12.984Z",
+        "action": "manual_review",
+        "mode": "manual",
+        "reason": "PEP declaration requires manual compliance review."
+      }
+    ]
+  },
+  {
+    "id": "KYC-2026-003",
+    "submittedAt": "2026-08-02T06:48:45.040Z",
+    "fullName": "json",
+    "email": "json@gmail.com",
+    "dateOfBirth": "1990-01-01",
+    "phone": "888888888",
+    "occupation": "director,it department",
+    "jurisdiction": "HK",
+    "investorType": "individual",
+    "subscriptionTokens": 200,
+    "walletAddress": "0xb1B70643589838F8febE3314ec95C56d22aef1C5",
+    "walletNetwork": "ethereum",
+    "pepDeclaration": true,
+    "docs": {
+      "govId": "kyc-demo-gov-id.pdf",
+      "proofAddr": "kyc-demo-proof-of-address.pdf",
+      "piEvidence": "kyc-demo-pi-evidence.pdf"
+    },
+    "assetDeploymentId": "ISS-DYN-1784600527036",
+    "assetId": "nibt3",
+    "assetName": "NIBT3",
+    "status": "pending",
+    "aiScore": null,
+    "aiRiskScore": null,
+    "riskBand": null,
+    "aiSummary": null,
+    "reviewNotes": "",
+    "txHash": null,
+    "kycExpiry": null,
+    "credentialCommitment": null,
+    "nullifierHash": null,
+    "proofHash": null,
+    "monitoringStatus": "pending",
+    "lastScreenedAt": null,
+    "agentReason": null,
+    "agentActionLog": [
+      {
+        "ts": "2026-08-08T02:20:39.926Z",
+        "action": "update",
+        "mode": "manual",
+        "reason": "Blocked by policy: Auto execute is disabled; AI score below update threshold (70); Risk band above update threshold (2)"
+      }
+    ]
+  },
+  {
+    "id": "KYC-2026-004",
+    "submittedAt": "2026-08-02T07:49:59.556Z",
+    "fullName": "json",
+    "email": "json@gmail.com",
+    "dateOfBirth": "1990-01-01",
+    "phone": "88888888",
+    "occupation": "director,it company",
+    "jurisdiction": "HK",
+    "investorType": "individual",
+    "subscriptionTokens": 200,
+    "walletAddress": "0xb1B70643589838F8febE3314ec95C56d22aef1C5",
+    "walletNetwork": "ethereum",
+    "pepDeclaration": true,
+    "docs": {
+      "govId": "kyc-demo-gov-id.pdf",
+      "proofAddr": "kyc-pass-proof-of-address.pdf",
+      "piEvidence": "kyc-pass-pi-evidence.pdf"
+    },
+    "assetDeploymentId": "ISS-DYN-1784600527036",
+    "assetId": "nibt3",
+    "assetName": "NIBT3",
+    "status": "approved",
+    "aiScore": 80,
+    "aiRiskScore": 80,
+    "riskBand": 2,
+    "aiSummary": "KYC review passed with score 80/100. All mandatory documents verified. Note: PEP declaration requires enhanced review.",
+    "reviewNotes": "",
+    "txHash": null,
+    "kycExpiry": 1817193049,
+    "credentialCommitment": "29a8c2d519b2f8ad8f471dcd8920691ac24753eadd56dc167df8171b4c751e2d",
+    "nullifierHash": "2cf3941a962423aca33eb215f579a10fe8acdf825697d60a231a8dc9918e238d",
+    "proofHash": "d38d4bf57f4220571524c8b010ad74e59eb352731b2e0e3b610f567ce2eec333",
+    "monitoringStatus": "issue",
+    "lastScreenedAt": "2026-08-02T07:50:49.140Z",
+    "agentReason": "No active privacy-preserving credential found; issue required.",
+    "aiBreakdown": [
+      {
+        "ruleId": "KYC-01",
+        "ruleName": "Identity Verification",
+        "score": 20,
+        "maxScore": 20,
+        "details": "Government ID document submitted and format verified."
+      },
+      {
+        "ruleId": "KYC-02",
+        "ruleName": "PEP & Sanctions Screening",
+        "score": 0,
+        "maxScore": 20,
+        "details": "Applicant declared as Politically Exposed Person (PEP). Enhanced due diligence required per AMLO Cap.615 s.20."
+      },
+      {
+        "ruleId": "KYC-03",
+        "ruleName": "PI Eligibility (SFO Schedule 1)",
+        "score": 20,
+        "maxScore": 20,
+        "details": "PI eligibility evidence document submitted."
+      },
+      {
+        "ruleId": "KYC-04",
+        "ruleName": "Source of Funds Declaration",
+        "score": 20,
+        "maxScore": 20,
+        "details": "Subscription below 500 tokens — source of funds declaration not mandatory."
+      },
+      {
+        "ruleId": "KYC-05",
+        "ruleName": "Proof of Address",
+        "score": 20,
+        "maxScore": 20,
+        "details": "Valid proof of address document submitted."
+      }
+    ],
+    "zkProof": "eyJjaXJjdWl0SWQiOiJreWMtY29tbWl0bWVudC12MSIsImNvbW1pdG1lbnQiOiIyOWE4YzJkNTE5YjJmOGFkOGY0NzFkY2Q4OTIwNjkxYWMyNDc1M2VhZGQ1NmRjMTY3ZGY4MTcxYjRjNzUxZTJkIiwibnVsbGlmaWVySGFzaCI6IjJjZjM5NDFhOTYyNDIzYWNhMzNlYjIxNWY1NzlhMTBmZThhY2RmODI1Njk3ZDYwYTIzMWE4ZGM5OTE4ZTIzOGQiLCJwdWJsaWNTaWduYWxzIjpbIjB4YjFiNzA2NDM1ODk4MzhmOGZlYmUzMzE0ZWM5NWM1NmQyMmFlZjFjNSIsIkhLIiwiaW5kaXZpZHVhbCIsIjE4MTcxOTMwNDkiLCIyIiwiMSJdLCJzY2hlbWUiOiJ6ay1yZWFkeS1oYXNoIiwidmVyaWZpY2F0aW9uS2V5SWQiOiJsb2NhbC1oYXNoLXYxIn0=",
+    "zkPublicSignals": [
+      "0xb1b70643589838f8febe3314ec95c56d22aef1c5",
+      "HK",
+      "individual",
+      "1817193049",
+      "2",
+      "1"
+    ],
+    "zkProofScheme": "zk-ready-hash",
+    "zkCircuitId": "kyc-commitment-v1",
+    "zkVerificationKeyId": "local-hash-v1",
+    "proofVerified": true,
+    "zkVerifiedAt": "2026-08-02T07:50:49.140Z",
+    "agentActionLog": [
+      {
+        "ts": "2026-08-02T07:50:49.141Z",
+        "action": "issue",
+        "mode": "manual",
+        "reason": "No active privacy-preserving credential found; issue required."
+      }
+    ],
+    "network": "Ethereum Sepolia",
+    "explorerUrl": null,
+    "signerPublicKey": null,
+    "pendingReason": "IdentityRegistry contract is not configured.",
+    "chainStatus": "Validated"
+  },
+  {
+    "id": "KYC-2026-005",
+    "submittedAt": "2026-08-08T02:22:00.852Z",
+    "fullName": "json",
+    "email": "json@gmail.cxom",
+    "dateOfBirth": "1988-01-01",
+    "phone": "88888888",
+    "occupation": "director,it company",
+    "jurisdiction": "HK",
+    "investorType": "individual",
+    "subscriptionTokens": 200,
+    "walletAddress": "0xb1B70643589838F8febE3314ec95C56d22aef1C5",
+    "walletNetwork": "ethereum",
+    "pepDeclaration": true,
+    "docs": {
+      "govId": "kyc-demo-gov-id.pdf",
+      "proofAddr": "kyc-demo-proof-of-address.pdf",
+      "piEvidence": "kyc-demo-pi-evidence.pdf"
+    },
+    "assetDeploymentId": "ISS-DYN-1784600527036",
+    "assetId": "nibt3",
+    "assetName": "NIBT3",
+    "status": "approved",
+    "aiScore": 80,
+    "aiRiskScore": 80,
+    "riskBand": 2,
+    "aiSummary": "KYC review passed with score 80/100. All mandatory documents verified. Note: PEP declaration requires enhanced review.",
+    "reviewNotes": "",
+    "txHash": null,
+    "kycExpiry": 1817691765,
+    "credentialCommitment": "9ead72631aff171d743e013a4a2828efbbf246542ceb6d12a7d61755d29d6f04",
+    "nullifierHash": "be1f9669e895ef037d9f186afa691b43f27a8e6d3373a804bd19abbda5fec615",
+    "proofHash": "0b3d3a57d53b7fc549761b7577cb978b7349a23e200836d13fe9ab585757e6d1",
+    "monitoringStatus": "issue",
+    "lastScreenedAt": "2026-08-08T02:22:45.132Z",
+    "agentReason": "No active privacy-preserving credential found; issue required.",
+    "agentActionLog": [
+      {
+        "ts": "2026-08-08T02:22:28.141Z",
+        "action": "update",
+        "mode": "manual",
+        "reason": "Blocked by policy: Auto execute is disabled; AI score below update threshold (70); Risk band above update threshold (2)"
+      },
+      {
+        "ts": "2026-08-08T02:22:45.137Z",
+        "action": "issue",
+        "mode": "manual",
+        "reason": "No active privacy-preserving credential found; issue required."
+      }
+    ],
+    "aiBreakdown": [
+      {
+        "ruleId": "KYC-01",
+        "ruleName": "Identity Verification",
+        "score": 20,
+        "maxScore": 20,
+        "details": "Government ID document submitted and format verified."
+      },
+      {
+        "ruleId": "KYC-02",
+        "ruleName": "PEP & Sanctions Screening",
+        "score": 0,
+        "maxScore": 20,
+        "details": "Applicant declared as Politically Exposed Person (PEP). Enhanced due diligence required per AMLO Cap.615 s.20."
+      },
+      {
+        "ruleId": "KYC-03",
+        "ruleName": "PI Eligibility (SFO Schedule 1)",
+        "score": 20,
+        "maxScore": 20,
+        "details": "PI eligibility evidence document submitted."
+      },
+      {
+        "ruleId": "KYC-04",
+        "ruleName": "Source of Funds Declaration",
+        "score": 20,
+        "maxScore": 20,
+        "details": "Subscription below 500 tokens — source of funds declaration not mandatory."
+      },
+      {
+        "ruleId": "KYC-05",
+        "ruleName": "Proof of Address",
+        "score": 20,
+        "maxScore": 20,
+        "details": "Valid proof of address document submitted."
+      }
+    ],
+    "zkProof": "eyJjaXJjdWl0SWQiOiJreWMtY29tbWl0bWVudC12MSIsImNvbW1pdG1lbnQiOiI5ZWFkNzI2MzFhZmYxNzFkNzQzZTAxM2E0YTI4MjhlZmJiZjI0NjU0MmNlYjZkMTJhN2Q2MTc1NWQyOWQ2ZjA0IiwibnVsbGlmaWVySGFzaCI6ImJlMWY5NjY5ZTg5NWVmMDM3ZDlmMTg2YWZhNjkxYjQzZjI3YThlNmQzMzczYTgwNGJkMTlhYmJkYTVmZWM2MTUiLCJwdWJsaWNTaWduYWxzIjpbIjB4YjFiNzA2NDM1ODk4MzhmOGZlYmUzMzE0ZWM5NWM1NmQyMmFlZjFjNSIsIkhLIiwiaW5kaXZpZHVhbCIsIjE4MTc2OTE3NjUiLCIyIiwiMSJdLCJzY2hlbWUiOiJ6ay1yZWFkeS1oYXNoIiwidmVyaWZpY2F0aW9uS2V5SWQiOiJsb2NhbC1oYXNoLXYxIn0=",
+    "zkPublicSignals": [
+      "0xb1b70643589838f8febe3314ec95c56d22aef1c5",
+      "HK",
+      "individual",
+      "1817691765",
+      "2",
+      "1"
+    ],
+    "zkProofScheme": "zk-ready-hash",
+    "zkCircuitId": "kyc-commitment-v1",
+    "zkVerificationKeyId": "local-hash-v1",
+    "proofVerified": true,
+    "zkVerifiedAt": "2026-08-08T02:22:45.132Z",
+    "network": "Ethereum Sepolia",
+    "explorerUrl": null,
+    "signerPublicKey": null,
+    "pendingReason": "IdentityRegistry contract is not configured.",
+    "chainStatus": "Validated"
+  }
+]

@@ -1,0 +1,48 @@
+{
+  "name": "app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env TURBOPACK_WORKERS=2 next dev",
+    "build": "cross-env NODE_OPTIONS=--max-old-space-size=1536 next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test:cleanverse": "node --import tsx --test test/cleanverse-*.test.ts",
+    "test:e2e:agent": "node --import tsx --test test/agent-kyc-e2e.test.ts",
+    "casper:keygen": "node keygen.mjs",
+    "casper:deploy": "node deploy-casper.mjs",
+    "agent:scheduler": "node scripts/agent-scheduler.mjs"
+  },
+  "dependencies": {
+    "@rainbow-me/rainbowkit": "^2.2.11",
+    "@tanstack/react-query": "^5.100.14",
+    "casper-js-sdk": "^5.0.12",
+    "next": "16.2.6",
+    "openai": "^6.37.0",
+    "pdfjs-dist": "^5.7.284",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "snarkjs": "^0.7.6",
+    "viem": "^2.51.3",
+    "wagmi": "^2.19.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "binaryen": "^130.0.0",
+    "circom2": "^0.2.23",
+    "circomlib": "^2.0.5",
+    "cross-env": "^10.1.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.6",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.1",
+    "typescript": "^5"
+  },
+  "overrides": {
+    "ws": "8.21.0"
+  },
+  "type": "module"
+}

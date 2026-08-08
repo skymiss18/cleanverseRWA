@@ -14,6 +14,7 @@ const PUBLIC_ROUTE_PREFIXES = ["/badge"];
 
 const ROLE_ROUTES: ReadonlyArray<{ path: string; role: RoleId }> = [
   { path: "/admin/subscriptions", role: "issuer" },
+  { path: "/admin/coupons", role: "issuer" },
   { path: "/tokenize", role: "issuer" },
   { path: "/prospectus", role: "issuer" },
   { path: "/kyc", role: "investor" },

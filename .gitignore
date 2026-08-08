@@ -5,13 +5,13 @@
 # --- Excluded directories per requirement ---
 document/
 techdocument/
-test/
-app/test/
+/test/
 
 # --- Non-code text/doc files at root ---
 tmpline.txt
 *.txt
 *.srt
+!app/test/**
 
 # --- Node.js / Next.js ---
 node_modules/
@@ -88,7 +88,6 @@ app/contracts-casper/target/wasm32-unknown-unknown/release/*
 !app/contracts-casper/target/wasm32-unknown-unknown/release/token_coupon_build_contract.min.wasm
 !app/contracts-casper/target/wasm32-unknown-unknown/release/identity_registry_build_contract.nobulk.wasm
 app/contracts-casper/.cargo/
-app/contracts-casper/Cargo.lock
 
 # --- Scratch / debug files ---
 app/src/lib/casper-token-deploy.ts.orig

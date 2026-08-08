@@ -1,0 +1,37 @@
+[
+  {
+    "label": "投资者A — 香港机构 (KYC通过)",
+    "walletAddress": "0x742d35Cc6634C0532925a3b8D4C9B5Ba3E3f7A12",
+    "jurisdiction": "SG",
+    "kycExpiryDays": 365,
+    "note": "预期结果: KYC 登记成功，onChain=true 或 false（取决于合约是否已部署）"
+  },
+  {
+    "label": "投资者B — 新加坡机构 (KYC通过)",
+    "walletAddress": "0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B",
+    "jurisdiction": "SG",
+    "kycExpiryDays": 180,
+    "note": "预期结果: KYC 登记成功，jurisdiction=SG"
+  },
+  {
+    "label": "投资者C — 美国散户 (短期过期)",
+    "walletAddress": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+    "jurisdiction": "US",
+    "kycExpiryDays": 30,
+    "note": "预期结果: KYC 登记成功，但30天后过期，适合测试过期逻辑"
+  },
+  {
+    "label": "无效钱包地址 (格式错误)",
+    "walletAddress": "0xinvalidaddress",
+    "jurisdiction": "SG",
+    "kycExpiryDays": 365,
+    "note": "预期结果: API 返回 400 错误 — Invalid wallet address"
+  },
+  {
+    "label": "空钱包地址",
+    "walletAddress": "",
+    "jurisdiction": "SG",
+    "kycExpiryDays": 365,
+    "note": "预期结果: API 返回 400 错误 — Invalid wallet address"
+  }
+]

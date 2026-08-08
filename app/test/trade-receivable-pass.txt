@@ -1,0 +1,114 @@
+PROSPECTUS — HARBOUR SUPPLY CHAIN FINANCE TOKEN (HSCFT)
+Tokenised Trade Receivables | Series 2026-TR1
+
+════════════════════════════════════════════════════════════
+ISSUER & ELIGIBILITY
+════════════════════════════════════════════════════════════
+
+Issuer: Harbour Trade Finance SPV Limited
+SFC Licence: Type 4 (Advising on Securities) + Type 9 under SFO
+The issuer is a licensed corporation under the Securities and Futures Ordinance (SFO)
+s.103, operating as a special purpose vehicle (SPV) for trade receivable securitisation.
+
+════════════════════════════════════════════════════════════
+UNDERLYING ASSET
+════════════════════════════════════════════════════════════
+
+Asset Type: Tokenised Trade Receivables (Supply Chain Finance)
+Underlying Asset: A diversified pool of verified trade receivables from
+  Asia-Pacific exporters supplying to investment-grade buyers globally.
+
+Portfolio Composition:
+  — 120 invoices across 15 anchor buyers (minimum BBB+ credit rating)
+  — Total face value: USD 12,000,000
+  — Weighted average tenor: 75 days
+  — Geographic diversification: EU (40%), US (35%), Japan (25%)
+
+Each token represents a fractional legal claim on the pool of receivables.
+Legal title and ownership of each invoice has been assigned to the SPV trustee
+via a deed of assignment registered in Singapore. The assignment creates a
+perfected legal claim enforceable against the buyers.
+
+════════════════════════════════════════════════════════════
+TOKEN DETAILS
+════════════════════════════════════════════════════════════
+
+Token Standard: ERC-3643 on Mantle Network
+Token Symbol: HSCFT
+Token Price: USD 100
+Total Supply: 120,000 tokens
+Minimum Investment: USD 50,000 (500 tokens)
+Expected Yield: 7.5–9.0% annualised (based on invoice discount rate)
+Maturity: Rolling; new tranches issued quarterly
+
+════════════════════════════════════════════════════════════
+INVESTOR ELIGIBILITY
+════════════════════════════════════════════════════════════
+
+Available to Professional Investors (PI) and institutional investors only,
+as defined under SFO Schedule 1. Accredited investors from FATF member states
+may participate after completing identity verification.
+
+On-chain transfer restrictions enforced via ERC-3643 whitelist. Only eligible,
+verified investors appear on the on-chain enforcement registry.
+
+════════════════════════════════════════════════════════════
+CUSTODY & TRUST STRUCTURE
+════════════════════════════════════════════════════════════
+
+All receivables are held by the trustee in a bankruptcy-remote SPV structure:
+  Trustee & Custodian: Standard Chartered Bank Limited
+  — Licensed trust company providing safekeeping of all invoice documents
+  — Escrow account for collections segregated from issuer assets
+  — Monthly custody report issued to token holders
+
+Digital asset custody: Anchorage Digital (licensed qualified custodian)
+
+════════════════════════════════════════════════════════════
+RISK FACTORS & DISCLOSURE
+════════════════════════════════════════════════════════════
+
+Risk Factors:
+1. Buyer Default Risk: Non-payment by invoice buyers. Mitigated by buyer
+   credit insurance (Euler Hermes AAA-rated policy).
+2. Dilution Risk: New invoice tranches may dilute existing token holders.
+3. Valuation Risk: Invoice valuation based on face value minus discount rate.
+   Independent monthly valuation report provided by Deloitte.
+4. Regulatory Risk: SFC regulatory changes may affect tokenised security structure.
+5. Liquidity Risk: No guaranteed secondary market for HSCFT tokens.
+6. Technology Risk: Smart contract vulnerability. Independent audit completed
+   by Trail of Bits (report #TOB-HBR-2026). No critical security issue identified.
+7. FX Risk: USD-denominated invoices from non-USD buyers carry currency exposure.
+
+Valuation Methodology: Each invoice is valued at face value discounted at the
+agreed financing rate. NAV is updated weekly by the independent administrator.
+
+Redemption: Tokens are redeemed as invoices are paid by buyers, typically
+within 30–90 days of issuance. Early redemption subject to 2% fee.
+
+Fees:
+  — Origination fee: 0.75% of portfolio face value
+  — Administration fee: 0.20% p.a. of outstanding balance
+  — Performance fee: 10% of returns above 7% hurdle
+
+Conflict of Interest: Harbour Trade Finance SPV may engage affiliated entities
+for invoice origination. All related-party arrangements are disclosed in this
+prospectus and subject to independent trustee oversight.
+
+════════════════════════════════════════════════════════════
+AML / KYC PROCEDURES
+════════════════════════════════════════════════════════════
+
+Full KYC identity verification required prior to token allocation.
+AML screening pursuant to AMLO (Cap. 615) including enhanced due diligence
+for high-risk jurisdictions. Source of funds verification and ongoing
+transaction monitoring. AMLO-compliant records retained for 6 years.
+
+════════════════════════════════════════════════════════════
+TECHNOLOGY & SMART CONTRACT
+════════════════════════════════════════════════════════════
+
+Smart contract deployed on Mantle Network. Full independent security audit
+completed with no critical vulnerability found. On-chain whitelist and
+transfer restriction enforcement protects eligible investors only.
+Chainlink oracle feeds provide real-time valuation data on-chain.

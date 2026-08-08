@@ -452,5 +452,106 @@
     "signerPublicKey": null,
     "pendingReason": "IdentityRegistry contract is not configured.",
     "chainStatus": "Validated"
+  },
+  {
+    "id": "KYC-2026-006",
+    "submittedAt": "2026-08-08T09:01:26.264Z",
+    "fullName": "json",
+    "email": "json@gmail.com",
+    "dateOfBirth": "1998-01-01",
+    "phone": "88888888",
+    "occupation": "director,it company",
+    "jurisdiction": "HK",
+    "investorType": "individual",
+    "subscriptionTokens": 200,
+    "walletAddress": "0xb1B70643589838F8febE3314ec95C56d22aef1C5",
+    "walletNetwork": "ethereum",
+    "pepDeclaration": true,
+    "docs": {
+      "govId": "kyc-demo-gov-id.pdf",
+      "proofAddr": "kyc-demo-proof-of-address.pdf",
+      "piEvidence": "kyc-demo-pi-evidence.pdf"
+    },
+    "assetDeploymentId": "ISS-DYN-1784600527036",
+    "assetId": "nibt3",
+    "assetName": "NIBT3",
+    "status": "approved",
+    "aiScore": 80,
+    "aiRiskScore": 80,
+    "riskBand": 2,
+    "aiSummary": "KYC review passed with score 80/100. All mandatory documents verified. Note: PEP declaration requires enhanced review.",
+    "reviewNotes": "",
+    "txHash": null,
+    "kycExpiry": 1817715718,
+    "credentialCommitment": "2d24d0674e3f23670fe659537a2284a613134aeb12b89bd4e32618d250490faf",
+    "nullifierHash": "69416549854386ee3f6868c17b812c4198c2ae4015a1e9b1353ffda52f07396c",
+    "proofHash": "ff377d884bc78fa9e89933b9b1798630c9ecb2e3a71d46a6128f1652b16b67f6",
+    "monitoringStatus": "issue",
+    "lastScreenedAt": "2026-08-08T09:01:58.094Z",
+    "agentReason": "No active privacy-preserving credential found; issue required.",
+    "aiBreakdown": [
+      {
+        "ruleId": "KYC-01",
+        "ruleName": "Identity Verification",
+        "score": 20,
+        "maxScore": 20,
+        "details": "Government ID document submitted and format verified."
+      },
+      {
+        "ruleId": "KYC-02",
+        "ruleName": "PEP & Sanctions Screening",
+        "score": 0,
+        "maxScore": 20,
+        "details": "Applicant declared as Politically Exposed Person (PEP). Enhanced due diligence required per AMLO Cap.615 s.20."
+      },
+      {
+        "ruleId": "KYC-03",
+        "ruleName": "PI Eligibility (SFO Schedule 1)",
+        "score": 20,
+        "maxScore": 20,
+        "details": "PI eligibility evidence document submitted."
+      },
+      {
+        "ruleId": "KYC-04",
+        "ruleName": "Source of Funds Declaration",
+        "score": 20,
+        "maxScore": 20,
+        "details": "Subscription below 500 tokens — source of funds declaration not mandatory."
+      },
+      {
+        "ruleId": "KYC-05",
+        "ruleName": "Proof of Address",
+        "score": 20,
+        "maxScore": 20,
+        "details": "Valid proof of address document submitted."
+      }
+    ],
+    "zkProof": "eyJjaXJjdWl0SWQiOiJreWMtY29tbWl0bWVudC12MSIsImNvbW1pdG1lbnQiOiIyZDI0ZDA2NzRlM2YyMzY3MGZlNjU5NTM3YTIyODRhNjEzMTM0YWViMTJiODliZDRlMzI2MThkMjUwNDkwZmFmIiwibnVsbGlmaWVySGFzaCI6IjY5NDE2NTQ5ODU0Mzg2ZWUzZjY4NjhjMTdiODEyYzQxOThjMmFlNDAxNWExZTliMTM1M2ZmZGE1MmYwNzM5NmMiLCJwdWJsaWNTaWduYWxzIjpbIjB4YjFiNzA2NDM1ODk4MzhmOGZlYmUzMzE0ZWM5NWM1NmQyMmFlZjFjNSIsIkhLIiwiaW5kaXZpZHVhbCIsIjE4MTc3MTU3MTgiLCIyIiwiMSJdLCJzY2hlbWUiOiJ6ay1yZWFkeS1oYXNoIiwidmVyaWZpY2F0aW9uS2V5SWQiOiJsb2NhbC1oYXNoLXYxIn0=",
+    "zkPublicSignals": [
+      "0xb1b70643589838f8febe3314ec95c56d22aef1c5",
+      "HK",
+      "individual",
+      "1817715718",
+      "2",
+      "1"
+    ],
+    "zkProofScheme": "zk-ready-hash",
+    "zkCircuitId": "kyc-commitment-v1",
+    "zkVerificationKeyId": "local-hash-v1",
+    "proofVerified": true,
+    "zkVerifiedAt": "2026-08-08T09:01:58.094Z",
+    "agentActionLog": [
+      {
+        "ts": "2026-08-08T09:01:58.096Z",
+        "action": "issue",
+        "mode": "manual",
+        "reason": "No active privacy-preserving credential found; issue required."
+      }
+    ],
+    "network": "Ethereum Sepolia",
+    "explorerUrl": null,
+    "signerPublicKey": null,
+    "pendingReason": "IdentityRegistry contract is not configured.",
+    "chainStatus": "Validated"
   }
 ]

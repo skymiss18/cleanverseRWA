@@ -196,6 +196,13 @@ CASPER_TREASURY_PUBLIC_KEY=<ed25519-public-key-hex>
 SILICONFLOW_API_KEY=<api-key>
 # or
 OPENAI_API_KEY=<api-key>
+
+# Sepolia ETH coupon distribution
+COUPON_ID=2026-Q3
+COUPON_ETH_PER_TOKEN=0.0001
+COUPON_PAYMENT_CONFIRMATIONS=1
+# Optional: defaults to app/data/cleanverse-coupon-distributions.json
+CLEANVERSE_COUPON_STORE_PATH=<absolute-json-store-path>
 ```
 
 ## Build Casper WASM Contracts

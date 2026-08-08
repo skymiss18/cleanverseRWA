@@ -1,0 +1,128 @@
+================================================================================
+              INTERNATIONAL SALES CONTRACT
+              Contract No.: SC-SINO-EUR-2026-0041
+================================================================================
+
+This International Sales Contract ("Contract") is entered into as of
+1 March 2026 ("Effective Date") by and between:
+
+SELLER:  Sino Precision Electronics Ltd., a company incorporated under the
+         laws of Singapore, with registered office at 1 Harbourfront Ave,
+         Times Square, Marina Bay, Singapore ("Seller")
+
+BUYER:   Europa Automotive Components GmbH, a company incorporated under the
+         laws of Germany, with registered office at Industriestrasse 12,
+         70565 Stuttgart, Germany ("Buyer")
+
+Collectively referred to as the "Parties".
+
+--------------------------------------------------------------------------------
+ARTICLE 1 — GOODS AND SPECIFICATIONS
+--------------------------------------------------------------------------------
+1.1  Seller agrees to sell and Buyer agrees to purchase the goods as specified
+     in the attached Product Specification Schedule (Schedule A), which forms
+     an integral part of this Contract.
+
+1.2  Total contract value: USD 505,000.00 (inclusive of freight and insurance,
+     CIF Hamburg Incoterms 2020).
+
+1.3  Goods shall conform to IPC-A-610 Class 2 standards and RoHS 2011/65/EU
+     Directive. Non-conforming goods will be rejected within 15 days of receipt.
+
+--------------------------------------------------------------------------------
+ARTICLE 2 — DELIVERY
+--------------------------------------------------------------------------------
+2.1  Delivery shall be made by 31 March 2026, CIF Hamburg, Incoterms 2020.
+2.2  Risk of loss and title pass to the Buyer upon delivery to carrier at
+     Singapore Port.
+2.3  Packing list, commercial invoice, Bill of Lading, and SGS inspection
+     certificate must accompany each shipment.
+
+--------------------------------------------------------------------------------
+ARTICLE 3 — PAYMENT TERMS
+--------------------------------------------------------------------------------
+3.1  Payment: Net 90 days from the date of Bill of Lading.
+3.2  Currency: United States Dollar (USD).
+3.3  Payment Method: SWIFT bank transfer (MT103) to:
+       Bank:    HSBC
+       Account: 004-838291-001
+       SWIFT:   HSBCHKHHHKH
+       Beneficiary: Sino Precision Electronics Ltd.
+
+3.4  If payment is not received by the due date, interest shall accrue at
+     1.5% per month on the outstanding balance.
+
+--------------------------------------------------------------------------------
+ARTICLE 4 — ASSIGNMENT OF RECEIVABLES
+--------------------------------------------------------------------------------
+4.1  Seller is expressly permitted to assign, transfer, or pledge any
+     receivable arising under this Contract (including the right to receive
+     payment) to any bank, financial institution, or special purpose vehicle
+     ("Assignee") without the prior consent of the Buyer, provided that:
+     (a) written notice of assignment is delivered to Buyer within 5 business
+         days of such assignment; and
+     (b) Buyer's payment obligation is not altered by such assignment.
+
+4.2  Upon receipt of notice of assignment, Buyer shall pay the Assignee
+     directly. Buyer waives any right of set-off against the Assignee.
+
+4.3  Buyer confirms that the receivables are free from any encumbrance,
+     lien, or competing claim that would impair assignment.
+
+--------------------------------------------------------------------------------
+ARTICLE 5 — WARRANTIES AND REPRESENTATIONS
+--------------------------------------------------------------------------------
+5.1  Seller warrants that (a) it holds clear title to the receivables,
+     (b) the goods are free of defects and conform to specifications,
+     (c) Seller has full authority to enter this Contract and assign receivables.
+
+5.2  Buyer warrants that (a) it is a solvent entity of good standing,
+     (b) it has full authority to enter this Contract and its obligations
+     are not subordinated to any insolvency proceedings.
+
+--------------------------------------------------------------------------------
+ARTICLE 6 — GOVERNING LAW AND DISPUTE RESOLUTION
+--------------------------------------------------------------------------------
+6.1  This Contract shall be governed by and construed in accordance with the
+     laws of Singapore, without regard to conflict of law principles.
+
+6.2  Any dispute arising out of or in connection with this Contract shall
+     be referred to and finally resolved by arbitration administered by the
+     Singapore International Arbitration Centre (SIAC) in accordance with
+     the SIAC Administered Arbitration Rules in force at the time.
+     The seat of arbitration shall be Singapore.
+     The language of arbitration shall be English.
+     The number of arbitrators shall be one.
+
+--------------------------------------------------------------------------------
+ARTICLE 7 — GENERAL PROVISIONS
+--------------------------------------------------------------------------------
+7.1  This Contract constitutes the entire agreement between the Parties
+     with respect to its subject matter and supersedes all prior negotiations.
+
+7.2  Any amendment to this Contract must be in writing and signed by both Parties.
+
+7.3  If any provision of this Contract is found to be invalid or unenforceable,
+     the remaining provisions shall remain in full force and effect.
+
+7.4  Notices shall be delivered in writing to the addresses stated above or
+     by email to the authorised representatives.
+
+--------------------------------------------------------------------------------
+SIGNATURES
+--------------------------------------------------------------------------------
+
+SELLER: Sino Precision Electronics Ltd.          BUYER: Europa Automotive GmbH
+
+Signed: __________________________               Signed: __________________________
+Name:   Mr. David Lam                            Name:   Ms. Petra Hoffmann
+Title:  Finance Director                         Title:  Chief Procurement Officer
+Date:   1 March 2026                             Date:   1 March 2026
+
+================================================================================
+Schedule A — Product Specification (incorporated by reference)
+Item 001: PCB Assembly PA-920 — IPC Class 2, RoHS compliant
+Item 002: OLED Display 7" — Resolution 1280x800, -20°C to 70°C operating
+Item 003: 50-pin Precision Connector — 0.5mm pitch, IP67 rated
+Item 004: Thermal Pad — 2.0 W/mK conductivity, UL94 V-0 flame rating
+================================================================================

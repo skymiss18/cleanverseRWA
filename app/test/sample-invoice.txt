@@ -1,0 +1,67 @@
+================================================================================
+                          COMMERCIAL INVOICE
+================================================================================
+
+Invoice No.     : INV-2026-SIN-0041
+Invoice Date    : 12 March 2026
+Payment Due Date: 11 June 2026 (90 days net)
+
+--------------------------------------------------------------------------------
+SELLER (EXPORTER)
+--------------------------------------------------------------------------------
+Sino Precision Electronics Ltd.
+1 Harbourfront Ave, Times Square
+1 Matheson Street, Causeway Bay
+Singapore
+Company Reg. No.: 2108774
+Bank: HSBC — A/C 004-838291-001
+SWIFT: HSBCHKHHHKH
+
+--------------------------------------------------------------------------------
+BUYER (IMPORTER)
+--------------------------------------------------------------------------------
+Europa Automotive Components GmbH
+Industriestrasse 12
+70565 Stuttgart, Germany
+Company Reg. No.: HRB 24018 AG Stuttgart
+VAT: DE 287 643 120
+
+--------------------------------------------------------------------------------
+GOODS DESCRIPTION
+--------------------------------------------------------------------------------
+Item   Description                       Qty      Unit Price    Amount (USD)
+----------------------------------------------------------------------
+001    PCB Assembly — Model PA-920        5,000    USD 48.00     240,000.00
+002    OLED Display Module — 7"           2,000    USD 65.00     130,000.00
+003    Precision Connector Set (50-pin)  10,000    USD  8.50      85,000.00
+004    Thermal Management Pad            20,000    USD  2.25      45,000.00
+----------------------------------------------------------------------
+                                        SUBTOTAL               500,000.00
+                                        Freight (CIF)            4,200.00
+                                        Insurance                  800.00
+----------------------------------------------------------------------
+                                        TOTAL DUE          USD 505,000.00
+================================================================================
+
+Incoterms: CIF Hamburg
+Country of Origin: Asia-Pacific
+Port of Loading: Singapore Port, Tanjong Pagar
+Port of Discharge: Hamburg, Germany
+Vessel / Voyage: CSCL PACIFIC OCEAN / Voyage 026W
+B/L Number: HLCUHKG2026031241
+
+Payment Terms: Net 90 days from Bill of Lading date.
+               Payment to be made via SWIFT MT103 to seller's HSBC account.
+
+Goods are inspected and certified by SGS Limited under
+Certificate of Inspection No. SGS-SG-2026-18741.
+
+Authorised Signature: _________________________
+Name: Mr. David Lam, Finance Director
+Date: 12 March 2026
+
+This invoice constitutes a valid assignment of receivable. The seller hereby
+acknowledges that this receivable may be assigned to a third-party financing
+entity (including an SPV) without further notice to the buyer, subject to
+written notification at time of assignment.
+================================================================================

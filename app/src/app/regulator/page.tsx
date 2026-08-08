@@ -140,7 +140,7 @@ const STAT_CARDS = [
 
     icon: "💰",
 
-    color: "#a78bfa",
+    color: "#7c3aed",
 
     bg: "rgba(167,139,250,0.08)",
 
@@ -158,7 +158,7 @@ const STAT_CARDS = [
 
     icon: "👤",
 
-    color: "#34d399",
+    color: "#047857",
 
     bg: "rgba(52,211,153,0.08)",
 
@@ -194,7 +194,7 @@ const STAT_CARDS = [
 
     icon: "📑",
 
-    color: "#f59e0b",
+    color: "#b45309",
 
     bg: "rgba(245,158,11,0.08)",
 
@@ -208,13 +208,13 @@ const STAT_CARDS = [
 
 const TYPE_COLORS: Record<string, { color: string; bg: string }> = {
 
-  Bond:            { color: "#1a56db", bg: "rgba(96,165,250,0.1)" },
+  Bond:            { color: "#1d4ed8", bg: "rgba(96,165,250,0.12)" },
 
-  GreenBond:       { color: "#34d399", bg: "rgba(52,211,153,0.1)" },
+  GreenBond:       { color: "#047857", bg: "rgba(52,211,153,0.12)" },
 
-  REIT:            { color: "#f59e0b", bg: "rgba(245,158,11,0.1)" },
+  REIT:            { color: "#b45309", bg: "rgba(245,158,11,0.12)" },
 
-  TradeReceivable: { color: "#c084fc", bg: "rgba(192,132,252,0.1)" },
+  TradeReceivable: { color: "#7e22ce", bg: "rgba(192,132,252,0.12)" },
 
 };
 
@@ -222,11 +222,11 @@ const TYPE_COLORS: Record<string, { color: string; bg: string }> = {
 
 const STATUS_COLORS: Record<string, { color: string; bg: string; border: string }> = {
 
-  "Compliant":       { color: "#34d399", bg: "rgba(52,211,153,0.08)",  border: "rgba(52,211,153,0.25)"  },
+  "Compliant":       { color: "#047857", bg: "rgba(52,211,153,0.10)",  border: "rgba(4,120,87,0.30)"  },
 
-  "Review Required": { color: "#fbbf24", bg: "rgba(251,191,36,0.08)",  border: "rgba(251,191,36,0.25)"  },
+  "Review Required": { color: "#b45309", bg: "rgba(251,191,36,0.10)",  border: "rgba(180,83,9,0.30)"  },
 
-  "Pending Review":  { color: "#94a3b8", bg: "rgba(148,163,184,0.08)", border: "rgba(148,163,184,0.25)" },
+  "Pending Review":  { color: "#475569", bg: "rgba(148,163,184,0.12)", border: "rgba(71,85,105,0.30)" },
 
 };
 
@@ -330,13 +330,13 @@ export default function RegulatorPage() {
 
               <div>
 
-                <h1 className="text-2xl font-bold text-white leading-tight">
+                <h1 className="text-2xl font-bold text-slate-950 leading-tight">
 
                   Regulatory Oversight Dashboard
 
                 </h1>
 
-                <p className="text-sm text-slate-400">
+                <p className="text-sm text-slate-600">
 
                   On-chain compliance records · NexusRWA Protocol · Ethereum Sepolia
 
@@ -354,7 +354,7 @@ export default function RegulatorPage() {
 
               className="text-[11px] font-semibold px-3 py-1.5 rounded-full"
 
-              style={{ background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.25)", color: "#a78bfa" }}
+              style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.25)", color: "#6d28d9" }}
 
             >
 
@@ -366,7 +366,7 @@ export default function RegulatorPage() {
 
               className="text-[11px] font-semibold px-3 py-1.5 rounded-full"
 
-              style={{ background: "rgba(52,211,153,0.08)", border: "1px solid rgba(52,211,153,0.2)", color: "#34d399" }}
+              style={{ background: "rgba(52,211,153,0.10)", border: "1px solid rgba(4,120,87,0.25)", color: "#047857" }}
 
             >
 
@@ -402,11 +402,11 @@ export default function RegulatorPage() {
 
               </div>
 
-              <div className="text-3xl font-bold text-white mb-1">{c.value}</div>
+              <div className="text-3xl font-bold text-slate-950 mb-1">{c.value}</div>
 
               <div className="text-[12px] font-medium mb-0.5" style={{ color: c.color }}>{c.label}</div>
 
-              <div className="text-[11px] text-slate-600">{c.sub}</div>
+              <div className="text-[11px] text-slate-700">{c.sub}</div>
 
             </div>
 
@@ -438,13 +438,13 @@ export default function RegulatorPage() {
 
             <div className="flex items-center gap-3">
 
-              <span className="text-[13px] font-semibold text-white">On-Chain Compliance Records</span>
+              <span className="text-[13px] font-semibold text-slate-900">On-Chain Compliance Records</span>
 
               <span
 
                 className="text-[10px] px-2 py-0.5 rounded font-mono"
 
-                style={{ background: "#f7f5f0", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.2)" }}
+                style={{ background: "#f5f3ff", color: "#6d28d9", border: "1px solid rgba(124,58,237,0.25)" }}
 
               >
 
@@ -474,7 +474,7 @@ export default function RegulatorPage() {
 
                     border: `1px solid ${filter === f ? "rgba(167,139,250,0.4)" : "rgba(0,0,0,0.12)"}`,
 
-                    color: filter === f ? "#a78bfa" : "#888888",
+                    color: filter === f ? "#6d28d9" : "#475569",
 
                   }}
 
@@ -510,7 +510,7 @@ export default function RegulatorPage() {
 
                       className="px-4 py-2.5 text-left font-semibold uppercase tracking-wide"
 
-                      style={{ color: "#888888", fontSize: "10px" }}
+                      style={{ color: "#475569", fontSize: "10px" }}
 
                     >
 
@@ -544,9 +544,9 @@ export default function RegulatorPage() {
 
                     >
 
-                      <td className="px-4 py-3 font-mono text-slate-500">{r.id}</td>
+                      <td className="px-4 py-3 font-mono text-slate-700">{r.id}</td>
 
-                      <td className="px-4 py-3 font-medium text-slate-300 max-w-[200px]">
+                      <td className="px-4 py-3 font-semibold text-slate-900 max-w-[200px]">
 
                         <span className="line-clamp-1">{r.asset}</span>
 
@@ -568,7 +568,7 @@ export default function RegulatorPage() {
 
                       </td>
 
-                      <td className="px-4 py-3 text-slate-400 max-w-[160px]">
+                      <td className="px-4 py-3 text-slate-700 max-w-[160px]">
 
                         <span className="line-clamp-1">{r.issuer}</span>
 
@@ -588,7 +588,7 @@ export default function RegulatorPage() {
 
                                 width: `${r.score}%`,
 
-                                background: r.score >= 85 ? "#34d399" : r.score >= 70 ? "#fbbf24" : "#f87171",
+                                background: r.score >= 85 ? "#059669" : r.score >= 70 ? "#d97706" : "#dc2626",
 
                               }}
 
@@ -600,7 +600,7 @@ export default function RegulatorPage() {
 
                             className="font-semibold"
 
-                            style={{ color: r.score >= 85 ? "#34d399" : r.score >= 70 ? "#fbbf24" : "#f87171" }}
+                            style={{ color: r.score >= 85 ? "#047857" : r.score >= 70 ? "#b45309" : "#b91c1c" }}
 
                           >
 
@@ -638,9 +638,9 @@ export default function RegulatorPage() {
 
                           rel="noopener noreferrer"
 
-                          className="font-mono text-[11px] transition-colors hover:text-blue-400"
+                          className="font-mono text-[11px] transition-colors hover:text-blue-700"
 
-                          style={{ color: "#888888" }}
+                          style={{ color: "#475569" }}
 
                         >
 
@@ -649,7 +649,7 @@ export default function RegulatorPage() {
 
                       </td>
 
-                      <td className="px-4 py-3 text-slate-500">{r.date}</td>
+                      <td className="px-4 py-3 text-slate-700">{r.date}</td>
 
                     </tr>
 
@@ -693,7 +693,7 @@ export default function RegulatorPage() {
 
           <div className="flex items-center justify-between mb-4">
 
-            <span className="text-[13px] font-semibold text-white">KYC Pipeline</span>
+            <span className="text-[13px] font-semibold text-slate-900">KYC Pipeline</span>
 
             <a
 
@@ -701,7 +701,7 @@ export default function RegulatorPage() {
 
               className="text-[11px] font-semibold transition-colors hover:text-violet-300"
 
-              style={{ color: "#a78bfa" }}
+              style={{ color: "#6d28d9" }}
 
             >
 
@@ -714,13 +714,13 @@ export default function RegulatorPage() {
 
             {[
 
-              { label: "Pending",  value: KYC_STATS.pending,   color: "#f59e0b" },
+              { label: "Pending",  value: KYC_STATS.pending,   color: "#b45309" },
 
               { label: "Reviewing",value: KYC_STATS.reviewing,  color: "#1a56db" },
 
-              { label: "Approved", value: KYC_STATS.approved,   color: "#34d399" },
+              { label: "Approved", value: KYC_STATS.approved,   color: "#047857" },
 
-              { label: "Rejected", value: KYC_STATS.rejected,   color: "#f87171" },
+              { label: "Rejected", value: KYC_STATS.rejected,   color: "#b91c1c" },
 
             ].map((s) => (
 
@@ -728,7 +728,7 @@ export default function RegulatorPage() {
 
                 <div className="text-2xl font-bold mb-1" style={{ color: s.color }}>{s.value}</div>
 
-                <div className="text-[11px] text-slate-500">{s.label}</div>
+                <div className="text-[11px] text-slate-700">{s.label}</div>
 
               </div>
 

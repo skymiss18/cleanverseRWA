@@ -1,5 +1,30 @@
 [
   {
+    "issuanceId": "ISS-DYN-1786176087694",
+    "assetName": "NIBT9",
+    "assetType": "Bond",
+    "requestId": "IA20260808164551393412",
+    "issueAssetId": 308,
+    "chain": "ethereum",
+    "tokenSymbol": "BND087694",
+    "adminAddress": "0xb1B70643589838F8febE3314ec95C56d22aef1C5",
+    "rule": {
+      "allowed_group": "",
+      "allowed_sub_group": "",
+      "min_tier": 30,
+      "min_sub_tier": 0,
+      "is_black_list": false,
+      "countries": [
+        "HK",
+        "SG"
+      ]
+    },
+    "applyStatus": "PENDING",
+    "subscriptionOpen": false,
+    "submittedAt": "2026-08-08T08:46:06.016Z",
+    "lastSyncedAt": "2026-08-08T08:46:06.016Z"
+  },
+  {
     "issuanceId": "ISS-DYN-1786152525123",
     "assetName": "NIBT7",
     "assetType": "Bond",

@@ -1,0 +1,197 @@
+PROSPECTUS — NEXUS INFRASTRUCTURE BOND TOKEN (NIBT)
+SFC-Authorised Corporate Bond | Series 2026-B
+
+════════════════════════════════════════════════════════════
+ISSUER & ELIGIBILITY
+════════════════════════════════════════════════════════════
+
+Issuer: Nexus Capital Markets Corporation Limited
+SFC Licence: Type 1 (Dealing in Securities) and Type 6 (Advising on Corporate Finance)
+under the Securities and Futures Ordinance (SFO) Cap. 571.
+The issuer is a licensed corporation authorised to deal in tokenised debt securities
+pursuant to SFO s.103 and the SFC Circular on Tokenisation of SFC-authorised
+Investment Products (November 2023).
+
+Credit Rating: Moody's A2 / S&P A (Stable Outlook)
+Incorporated in Singapore.
+
+════════════════════════════════════════════════════════════
+BOND TERMS & STRUCTURE
+════════════════════════════════════════════════════════════
+
+Token Standard:   ERC-3643 compliant token on Mantle Network
+Token Symbol:     NIBT
+Face Value:       USD 1,000 per token
+Total Issuance:   USD 100,000,000 (100,000 tokens)
+Coupon Rate:      5.50% per annum (semi-annual coupon payment)
+Coupon Payment:   15 January and 15 July each year
+Maturity Date:    15 July 2031 (5-year tenor)
+Settlement:       T+2 via on-chain atomic settlement
+Minimum Subscription: USD 200,000 (200 tokens)
+
+Use of Proceeds:
+  — 60% allocated to Asia logistics infrastructure projects
+  — 25% allocated to cross-border supply chain digitalisation
+  — 15% allocated to working capital and issuance costs
+
+Each token represents a legal, direct, unconditional and unsubordinated obligation
+of the Issuer. Ownership is recorded permanently on Mantle Network blockchain.
+The trust deed is registered with and held in custody by the trustee.
+
+════════════════════════════════════════════════════════════
+INVESTOR ELIGIBILITY & DISTRIBUTION
+════════════════════════════════════════════════════════════
+
+This offering is exclusively available to Professional Investors (PI) and
+institutional investors as defined under Schedule 1 of the Securities and
+Futures Ordinance. Accredited investors from FATF-member jurisdictions may
+subscribe subject to applicable local regulations.
+
+Minimum net assets requirement: HKD 8,000,000 or equivalent for individual PI.
+Institutional PI: SFC-licensed firms, insurance companies, banks, MPF trustees.
+
+Transfer restrictions are enforced on-chain: tokens may only be transferred to
+KYC-verified, whitelisted investor addresses. The ERC-3643 compliance module
+performs eligibility checks on every transfer, preventing distribution to
+non-qualifying investors. On-chain enforcement is automatic and tamper-proof.
+
+════════════════════════════════════════════════════════════
+CUSTODY & TRUSTEE ARRANGEMENTS
+════════════════════════════════════════════════════════════
+
+Bond Trustee: HSBC Institutional Trust Services (Asia) Limited
+  — Licensed trust company and approved trustee under SFO
+  — Holds the trust deed, escrow accounts, and bond register
+  — Annual independent review by PricewaterhouseCoopers
+
+Digital Asset Custodian: HashKey Custody (SFC-licensed VASP Type 1 & 7)
+  — Provides institutional-grade cold storage for token private keys
+  — Maintains segregated accounts per investor
+  — SOC 2 Type II certified infrastructure
+
+Physical bond documentation and title records maintained at:
+Singapore Land Registry and ACRA.
+
+════════════════════════════════════════════════════════════
+AML / KYC PROCEDURES
+════════════════════════════════════════════════════════════
+
+The Issuer has implemented full AMLO (Cap. 615)-compliant KYC procedures.
+All investors undergo identity verification including:
+  — Government-issued ID document verification
+  — Proof of address (utility bill or bank statement dated within 3 months)
+  — Source of funds declaration for subscriptions exceeding USD 500,000
+  — PEP (Politically Exposed Person) and sanctions screening via Refinitiv World-Check
+  — Ongoing transaction monitoring post-issuance
+
+KYC records are maintained for a minimum of 7 years per AMLO requirements.
+AI-assisted identity verification is performed via the NexusRWA IdentityRegistry
+smart contract on Mantle Network. Each investor wallet is whitelisted only after
+full due diligence completion.
+
+════════════════════════════════════════════════════════════
+RISK FACTORS & DISCLOSURE
+════════════════════════════════════════════════════════════
+
+Investors should carefully consider the following material risk factors:
+
+1. Credit Risk: Risk of issuer default on coupon or principal obligations.
+   Mitigated by A2/A credit rating and USD 350M in tangible asset backing.
+
+2. Interest Rate Risk: Bond market value is inversely correlated with prevailing
+   interest rates. Mark-to-market losses may occur during rising rate environments.
+   Hedging via SOFR swap arrangements are in place.
+
+3. Regulatory Risk: Changes to SFC regulations governing tokenised securities,
+   including potential reclassification of digital tokens, may affect the legal
+   structure, transferability, and secondary market liquidity of this instrument.
+
+4. Technology Risk: Smart contract vulnerabilities may expose investors to loss.
+   All NexusRWA smart contracts have been independently audited by PeckShield Inc.
+   with zero critical or high-severity findings prior to deployment on Mantle Mainnet.
+
+5. Liquidity Risk: No guaranteed secondary market currently exists for NIBT tokens.
+   Redemption is available at par value at maturity only. A secondary trading
+   facility may be established on an SFC-licensed exchange at a future date.
+
+6. Concentration Risk: Revenue dependency on Asia infrastructure sector.
+   Diversification across sub-sectors mitigates sector-specific downturns.
+
+7. Custody Risk: Loss of private keys or custodian insolvency could affect access
+   to token holdings. Mitigated by institutional custodian with segregated accounts.
+
+Valuation Methodology:
+The bond is valued at par (USD 1,000 per token) plus accrued interest calculated
+on an Actual/365 day-count convention. Independent valuation by Bloomberg BVAL
+is performed monthly and made available to all investors via the investor portal.
+
+Redemption Terms:
+  — Full principal redemption at maturity: 15 July 2031
+  — Optional early issuer call: from 15 July 2029 with 30-day notice
+  — Early redemption price: par plus make-whole premium (Treasury + 25 bps)
+  — No investor put option unless material adverse change event occurs
+
+Fees & Charges:
+  — Subscription fee: 0.25% of subscription amount
+  — Annual management fee: 0.08% per annum on outstanding balance
+  — Redemption fee: Nil at maturity; make-whole + 0.20% for early issuer call
+  — Custody fee: 0.05% per annum (charged to investor accounts quarterly)
+
+Conflict of Interest:
+Nexus Capital Markets Corporation Limited acts as both issuer and placement agent
+for this offering. The potential conflict of interest has been disclosed to and
+acknowledged by all subscribing investors in accordance with SFC Code of Conduct
+para. 13.5.
+
+════════════════════════════════════════════════════════════
+SMART CONTRACT TECHNICAL DETAILS
+════════════════════════════════════════════════════════════
+
+Deployed on: Mantle Network (Chain ID: 5000)
+Token Contract: NexusRWAToken.sol (ERC-3643)
+Compliance Oracle: ComplianceOracle.sol — AI compliance score recorded on-chain
+Identity Registry: IdentityRegistry.sol — KYC whitelist enforced per transfer
+Yield Aggregator: YieldAggregator.sol — Coupon proceeds routed via USDY/mETH
+
+AI Compliance Score: Generated by NexusRWA AI engine against SFC rules.
+Score is permanently written to ComplianceOracle.sol on Mantle as a gating
+condition. Tokens cannot be minted unless on-chain AI score >= 70/100.
+
+Audit Report: PeckShield-2026-NexusRWA-v1.2.pdf
+  — 0 Critical findings
+  — 0 High findings
+  — 2 Medium findings (acknowledged and remediated)
+  — 3 Low/Informational findings (acknowledged)
+
+EigenDA Commitment: Off-chain documents (prospectus, trust deed, audit report)
+are committed to EigenDA with on-chain hash stored in the token contract's
+prospectusCommitment field for permanent verifiability.
+
+════════════════════════════════════════════════════════════
+LEGAL & REGULATORY
+════════════════════════════════════════════════════════════
+
+This prospectus has been reviewed and authorised by the SFC
+pursuant to Section 103 of the Securities and Futures Ordinance.
+SFC authorisation reference: SFC/NIBT/2026-B/001
+
+Governing Law: Laws of Singapore
+Jurisdiction: Exclusive jurisdiction of the courts of Singapore
+Legal Counsel: Clifford Chance LLP
+
+This document does not constitute an offer or solicitation in any jurisdiction
+where such offer is prohibited. Distribution to US persons is restricted
+pursuant to Regulation S of the US Securities Act 1933.
+
+════════════════════════════════════════════════════════════
+CONTACT & SUBSCRIPTION
+════════════════════════════════════════════════════════════
+
+Placement Agent: Nexus Capital Markets Corporation Limited
+Address: 38/F, Two International Finance Centre, 8 Finance Street, Marina Bay, Singapore
+SFC Licence No.: AAA123
+Email: institutional@nexuscapital.hk
+Subscription Portal: https://app.nexusRWA.io/tokenize
+
+Subscription Deadline: 30 June 2026 17:00 HKT
+Settlement Date: 15 July 2026

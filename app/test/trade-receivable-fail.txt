@@ -1,0 +1,39 @@
+INVESTMENT MEMO — PEARL RIVER TRADE FINANCE TOKEN (PRTT)
+Draft v0.1 — INTERNAL USE ONLY — NOT FOR DISTRIBUTION
+
+This document describes a trade finance tokenisation opportunity for internal
+review purposes only.
+
+OVERVIEW
+We are looking to tokenise a batch of trade receivables from Pearl River
+Manufacturing Company. The company exports electronics components to buyers
+in Europe and North America.
+
+Invoice Portfolio Summary:
+- Total face value: USD 3,200,000
+- Number of invoices: 47
+- Average invoice tenor: 90 days
+- Expected yield: 8-12% annualised
+
+The buyers have good credit history with the exporter over the past 3 years.
+Most buyers are Fortune 500 companies.
+
+PROPOSED STRUCTURE
+We plan to issue digital tokens on a blockchain. Each token will be worth
+about USD 1,000. Investors can buy these tokens and receive payments when
+the invoices are paid.
+
+The tokens will be listed on our platform for secondary trading after the
+initial offering.
+
+RETURNS
+Investors should expect returns of approximately 8-10% per annum based on
+historical invoice payment rates. There is some risk of buyer default but
+this has been minimal historically.
+
+NEXT STEPS
+- Legal review pending
+- Platform setup in progress
+- Investor outreach to begin Q3 2026
+
+Contact: info@pearlriverfinance.com

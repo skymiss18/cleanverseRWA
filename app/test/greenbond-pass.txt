@@ -1,0 +1,122 @@
+PROSPECTUS — HARBOUR GREEN BOND TOKEN (HGBT)
+SFC-Authorised Green Bond | Series 2026-A
+
+════════════════════════════════════════════════════════════
+ISSUER & ELIGIBILITY
+════════════════════════════════════════════════════════════
+
+Issuer: Harbour Sustainable Finance Corporation Limited
+SFC Licence: Type 1 (Dealing in Securities) under the Securities and Futures Ordinance (SFO)
+The issuer is a licensed corporation authorised to deal in tokenised securities
+pursuant to SFO s.103 and the SFC's tokenisation framework circular (November 2023).
+
+════════════════════════════════════════════════════════════
+GREEN BOND FRAMEWORK & CERTIFICATION
+════════════════════════════════════════════════════════════
+
+Asset Type: Tokenised Green Bond
+Use of Proceeds: 100% allocated to eligible green projects including:
+  — Solar energy installations in Southeast Asia
+  — Energy-efficient building retrofits (BEAM Plus Gold certified)
+  — Electric vehicle charging infrastructure
+
+This green bond has received a formal Second Party Opinion (SPO) from Sustainalytics,
+confirming alignment with the ICMA Green Bond Principles 2021. The bond carries
+an ESG rating of AA from MSCI ESG Research.
+
+Green Certification: Certified by the Carbon Trust
+under the Green Finance Certification Scheme. Carbon reduction target: 45,000
+tonnes CO2 equivalent over the bond term.
+
+Sustainable finance principles are embedded in the token structure, with quarterly
+ESG impact reporting published on-chain via EigenDA commitments.
+
+════════════════════════════════════════════════════════════
+BOND TERMS
+════════════════════════════════════════════════════════════
+
+Token Standard: ERC-3643 on Mantle Network
+Token Symbol: HGBT
+Face Value: USD 1,000 per token
+Total Issuance: USD 50,000,000 (50,000 tokens)
+Coupon Rate: 4.25% per annum (semi-annual payment)
+Maturity Date: 15 May 2031 (5-year tenor)
+Minimum Subscription: USD 100,000 (100 tokens)
+
+Each token represents a legal claim on a proportional share of the bond's
+principal and coupon obligations. Ownership of the underlying asset is
+evidenced by the trust deed registered with the Asia-Pacific trustee.
+
+════════════════════════════════════════════════════════════
+INVESTOR ELIGIBILITY
+════════════════════════════════════════════════════════════
+
+This offering is available exclusively to Professional Investors (PI) and
+institutional investors as defined under Schedule 1 of SFO. Accredited investors
+from FATF-compliant jurisdictions may subscribe subject to local regulations.
+
+Transfer restrictions enforced on-chain: tokens may only be transferred to
+eligible, whitelisted addresses. On-chain enforcement via ERC-3643 compliance
+module prevents transfers to non-KYC-verified investors.
+
+════════════════════════════════════════════════════════════
+CUSTODY & TRUSTEE
+════════════════════════════════════════════════════════════
+
+Bond proceeds and underlying project assets are held in custody by:
+  Trustee: Bank of China Trustees Limited
+  — Licensed trust company in Asia-Pacific
+  — Provides safekeeping of all bond documentation and escrow accounts
+  — Annual custodian audit by Deloitte
+
+Digital token safekeeping: OSL Digital Securities (SFC-licensed custodian)
+
+════════════════════════════════════════════════════════════
+RISK FACTORS & DISCLOSURE
+════════════════════════════════════════════════════════════
+
+Key risk factors investors must consider:
+
+1. Credit Risk: Issuer default risk. Mitigated by investment-grade credit rating (Moody's A3).
+2. Interest Rate Risk: Bond valuation is sensitive to market interest rate movements.
+3. Regulatory Risk: Changes to SFC regulations on tokenised securities may affect
+   the bond's legal structure and transferability.
+4. Technology Risk: Smart contract security vulnerabilities. The smart contract
+   has been independently audited by PeckShield with zero critical findings.
+5. Liquidity Risk: No guaranteed secondary market. Redemption at maturity only.
+6. ESG Risk: Failure of green projects to achieve certification targets may affect
+   ESG ratings and investor demand.
+
+Valuation: The bond is valued at par (face value) plus accrued interest.
+Mark-to-market valuation is available via Bloomberg terminal feed.
+
+Redemption: Full principal redemption at maturity (15 May 2031).
+Optional early redemption at issuer's discretion with 30-day notice and
+a make-whole premium.
+
+Fees:
+  — Issuance fee: 0.5% of total proceeds
+  — Annual administration fee: 0.10% of outstanding balance
+  — Early redemption fee: Make-whole + 0.25%
+
+Conflict of Interest: Harbour Sustainable Finance Corporation and its affiliates
+may hold positions in the underlying green projects. All conflicts are disclosed
+in the prospectus supplement.
+
+════════════════════════════════════════════════════════════
+AML / KYC COMPLIANCE
+════════════════════════════════════════════════════════════
+
+Mandatory KYC identity verification for all subscribers. AML screening pursuant
+to AMLO (Cap. 615). Due diligence includes beneficial ownership verification,
+source of funds confirmation, and PEP/sanctions screening. The issuer maintains
+AMLO-compliant records for a minimum of 6 years.
+
+════════════════════════════════════════════════════════════
+SMART CONTRACT & TECHNOLOGY
+════════════════════════════════════════════════════════════
+
+The HGBT token smart contract is deployed on Mantle Network. An independent
+security audit was completed in April 2026, identifying no critical vulnerability.
+On-chain whitelist and transfer restriction enforcement ensure only eligible
+investors can hold tokens.

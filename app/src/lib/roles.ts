@@ -29,6 +29,7 @@ const ISSUER_LINKS: RoleLink[] = [
   { href: "/tokenize",           step: "1", label: "Tokenise Asset",          desc: "Structure, audit & register issuance on Ethereum",       isTool: false },
   { href: "/prospectus",         step: "2", label: "Draft Prospectus",        desc: "AI-assisted SFC-compliant offering memorandum",            isTool: false },
   { href: "/admin/subscriptions", step: "3", label: "Subscription Settlement", desc: "Verify paid subscriptions and mint A-Tokens to investors", isTool: false },
+  { href: "/admin/coupons",       step: "4", label: "Coupon Distribution",    desc: "Pay investor coupons from the connected Ethereum wallet",   isTool: false },
 ];
 
 // Investor — professional or retail investor subscribing to tokens

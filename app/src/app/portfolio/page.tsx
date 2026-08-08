@@ -388,24 +388,12 @@ export default function PortfolioPage() {
       return;
     }
 
-    setCouponBusy(`${entry.canClaim ? "claim" : "fund"}-${entry.index}`);
+    setCouponBusy(`claim-${entry.index}`);
     setCouponError(null);
     setCouponNotice(null);
 
     try {
-      if (entry.canFund) {
-        const res = await fetch("/api/portfolio/coupon/fund", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ assetId: hibtPosition.assetId, index: entry.index, wallet }),
-        });
-        const data = await res.json();
-        if (!res.ok) {
-          throw new Error(data.error ?? "Failed to fund coupon");
-        }
-        const payout = data.payout ? (Number(data.payout) / 1e18).toFixed(2) : "?";
-        setCouponNotice(`Issuer sent ${payout} coupon tokens directly to your wallet. Tx: ${data.txHash.slice(0, 10)}...`);
-      } else if (entry.canClaim) {
+      if (entry.canClaim) {
         const tokenAddr = process.env.NEXT_PUBLIC_HARBOUR_RWA_TOKEN_ADDRESS as `0x${string}` | undefined;
         if (!tokenAddr || tokenAddr === "0x0000000000000000000000000000000000000000") {
           throw new Error("NEXT_PUBLIC_HARBOUR_RWA_TOKEN_ADDRESS not configured");
@@ -659,7 +647,7 @@ export default function PortfolioPage() {
                     : [{ index: 0, paymentDate: "2026-07-15", label: "Semi-annual coupon", amountPerToken: "USD 27.50", myPayout: nextCouponPayout, claimableAmount: "USD 0.00", status: "Scheduled", distributed: false, claimed: false, canClaim: false, canFund: false }]
                   ).map((entry, index) => {
                     const statusStyle = couponStatusStyle(entry.status);
-                    const actionKey = `${entry.canClaim ? "claim" : "fund"}-${entry.index}`;
+                    const actionKey = `claim-${entry.index}`;
 
                     return (
                       <tr key={`${entry.paymentDate}-${index}`} style={{ borderBottom: index < couponHistory.length - 1 ? "1px solid rgba(0,0,0,0.08)" : "none" }}>

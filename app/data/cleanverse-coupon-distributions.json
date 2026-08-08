@@ -1,0 +1,40 @@
+[
+  {
+    "id": "ISS-DYN-1786152525123:2026-Q3:0xb1b70643589838f8febe3314ec95c56d22aef1c5",
+    "issuanceId": "ISS-DYN-1786152525123",
+    "couponId": "2026-Q3",
+    "issuerAddress": "0xb1B70643589838F8febE3314ec95C56d22aef1C5",
+    "investorAddress": "0xb1B70643589838F8febE3314ec95C56d22aef1C5",
+    "atokenAddress": "0xc7ce7F96B92EC7fDf13D16E5448c092A8F0743ad",
+    "paymentCurrency": "ETH",
+    "tokenBalance": "20000000",
+    "amountPerToken": "0.0001",
+    "amount": "2000000000000000",
+    "status": "Confirmed",
+    "reservedUntil": "2026-08-08T09:21:38.967Z",
+    "createdAt": "2026-08-08T09:11:38.967Z",
+    "updatedAt": "2026-08-08T09:12:08.387Z",
+    "txHash": "0xbc8b0083005c73281d3bfb2675608b3a13a52779d0da50b6fcda52d8891cb889",
+    "blockNumber": "11444296",
+    "confirmedAt": "2026-08-08T09:12:08.387Z"
+  },
+  {
+    "id": "ISS-DYN-1785653804039:2026-Q3:0xb1b70643589838f8febe3314ec95c56d22aef1c5",
+    "issuanceId": "ISS-DYN-1785653804039",
+    "couponId": "2026-Q3",
+    "issuerAddress": "0xb1B70643589838F8febE3314ec95C56d22aef1C5",
+    "investorAddress": "0xb1B70643589838F8febE3314ec95C56d22aef1C5",
+    "atokenAddress": "0xA678E08A9e6155A11D1df3f82a22A66276B2A9ef",
+    "paymentCurrency": "ETH",
+    "tokenBalance": "40000000",
+    "amountPerToken": "0.0001",
+    "amount": "4000000000000000",
+    "status": "Confirmed",
+    "reservedUntil": "2026-08-08T06:29:05.818Z",
+    "createdAt": "2026-08-08T06:19:05.818Z",
+    "updatedAt": "2026-08-08T06:19:43.528Z",
+    "txHash": "0x5f24343db0ea64130e232fbe4f45e91bbee64242f430ddc81d573e797c52938a",
+    "blockNumber": "11443461",
+    "confirmedAt": "2026-08-08T06:19:43.528Z"
+  }
+]

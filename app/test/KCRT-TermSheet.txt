@@ -1,0 +1,147 @@
+TERM SHEET — HARBOUR CENTRAL REIT TOKEN (HCRT)
+Version 1.0 | May 2026
+
+════════════════════════════════════════════════════════════
+ISSUER & ELIGIBILITY
+════════════════════════════════════════════════════════════
+
+Issuer: Harbour Capital Asset Management Limited
+Jurisdiction: Singapore
+SFC Licence: Type 9 (Asset Management) under the Securities and Futures Ordinance (SFO)
+The issuer is a licensed corporation under SFO s.103, duly authorised to manage
+collective investment schemes and issue tokenised securities.
+
+This offering is structured in strict compliance with the SFC Code on Real Estate
+Investment Trusts (REIT Code) and all applicable SFC tokenisation circulars.
+
+════════════════════════════════════════════════════════════
+ASSET DESCRIPTION
+════════════════════════════════════════════════════════════
+
+Asset Type: Tokenised Real Estate Investment Trust (REIT)
+Underlying Asset: Grade-A commercial office portfolio in Marina Bay, Singapore
+  — Tower A, 8 Exchange Square, Central (appraised value: HKD 1,200,000,000)
+  — Tower B, 28 Queen's Road Central (appraised value: HKD 800,000,000)
+Total Portfolio NAV: HKD 2,000,000,000 (as at 30 April 2026)
+
+Each token represents a fractional legal claim on the underlying real-world asset
+portfolio. Clear title and ownership documentation are held by the trustee.
+A registered deed of trust has been executed and filed with the Land Registry of
+Singapore, establishing the legal claim of token holders.
+
+Rental Yield: Approximately 4.5% per annum (based on current tenancy agreements)
+Property valuation is conducted semi-annually by an independent RICS-certified valuer.
+
+════════════════════════════════════════════════════════════
+TOKEN DETAILS
+════════════════════════════════════════════════════════════
+
+Token Standard: ERC-3643 (T-REX) on Mantle Network
+Token Symbol: HCRT
+Total Supply: 200,000,000 HCRT
+Token Price (Issuance): USD 1.00
+Minimum Investment: USD 10,000 (10,000 tokens)
+Dividend Distribution: Quarterly, proportional to token holdings
+
+════════════════════════════════════════════════════════════
+INVESTOR ELIGIBILITY & RESTRICTIONS
+════════════════════════════════════════════════════════════
+
+This offering is restricted exclusively to Professional Investors (PI) as defined
+under Schedule 1 of the Securities and Futures Ordinance (SFO s.1 Sch 1),
+including institutional investors, licensed corporations, and individuals with
+a portfolio of not less than HKD 8,000,000.
+
+Accredited and institutional investors from approved jurisdictions may participate
+subject to applicable local law requirements.
+
+Transfer restrictions are enforced on-chain via the ERC-3643 compliance module.
+Only whitelisted, eligible investors who have completed identity verification may
+hold or receive HCRT tokens. On-chain enforcement ensures no transfer can occur
+to non-compliant addresses.
+
+════════════════════════════════════════════════════════════
+CUSTODY & ASSET SAFEKEEPING
+════════════════════════════════════════════════════════════
+
+The underlying assets (property portfolio) are held by:
+  Trustee & Custodian: HSBC Institutional Trust Services (Asia) Limited
+  — A licensed trust company and custodian registered in Singapore
+  — Provides independent custody and safekeeping of all title documents,
+    rental income accounts, and property management records
+  — Subject to annual external audit by PricewaterhouseCoopers
+
+Token custody (digital asset safekeeping) is provided by:
+  Digital Asset Custodian: HashKey Custody (TCSP licensed)
+
+════════════════════════════════════════════════════════════
+RISK FACTORS & DISCLOSURE
+════════════════════════════════════════════════════════════
+
+Investors should carefully consider the following risk factors before investing:
+
+1. Market Risk: Property valuations may fluctuate based on Singapore real estate
+   market conditions, interest rate changes, and macroeconomic factors.
+
+2. Liquidity Risk: Secondary market trading of HCRT tokens is not guaranteed.
+   Redemption is available annually during designated windows.
+
+3. Regulatory Risk: Changes in SFC tokenisation regulations or REIT Code requirements
+   may affect the token structure and transferability.
+
+4. Technology Risk: Smart contract vulnerabilities, network outages, or blockchain
+   forks may impact token operations. The smart contract code has been fully audited
+   by an independent third-party security firm (Certik, audit report #HCK-2026-042).
+
+5. Concentration Risk: The portfolio is geographically concentrated in Asia-Pacific
+   Central district.
+
+Asset Valuation Methodology: NAV is calculated semi-annually using discounted cash
+flow (DCF) and capitalisation rate methods by an independent RICS valuer.
+
+Redemption Terms: Annual redemption window (Q4 each year), subject to 90-day notice.
+Redemption price is based on prevailing NAV minus a 1.5% redemption fee.
+
+Fee Structure:
+  — Management Fee: 1.0% p.a. of NAV
+  — Custodian Fee: 0.15% p.a. of NAV
+  — Performance Fee: 15% of returns above 6% p.a. hurdle rate
+
+Conflict of Interest: Harbour Capital Asset Management Limited may provide services
+to affiliated entities. All related-party transactions are disclosed in the annual
+report and approved by the independent board committee.
+
+════════════════════════════════════════════════════════════
+AML / KYC PROCEDURES
+════════════════════════════════════════════════════════════
+
+All investors must complete KYC (Know Your Customer) procedures prior to token
+allocation. The issuer implements AMLO (Anti-Money Laundering and Counter-Terrorist
+Financing Ordinance)-compliant AML policies, including:
+  — Identity verification via AI-powered document authentication
+  — Source of funds declaration
+  — Ongoing due diligence and transaction monitoring
+  — Sanctions screening against OFAC, UN, and regulatory authority lists
+
+The identity verification process is conducted in compliance with AMLO Schedule 2.
+
+════════════════════════════════════════════════════════════
+TECHNOLOGY & SMART CONTRACT
+════════════════════════════════════════════════════════════
+
+The HCRT token is deployed as a smart contract on Mantle Network using the
+ERC-3643 T-REX standard. The smart contract code has been subject to a comprehensive
+independent security audit to identify any vulnerability prior to mainnet deployment.
+
+On-chain compliance is enforced through a ComplianceOracle contract that gates
+token minting and transfers based on AI-verified compliance scores and KYC status.
+The whitelist of eligible investors is maintained in an on-chain IdentityRegistry.
+
+════════════════════════════════════════════════════════════
+LEGAL NOTICE
+════════════════════════════════════════════════════════════
+
+This term sheet is for informational purposes only and does not constitute an offer
+to sell or a solicitation of an offer to buy any securities. This offering has been
+approved by the SFC under the REIT Code and the tokenisation framework. Past
+performance of the underlying real estate assets is not indicative of future results.

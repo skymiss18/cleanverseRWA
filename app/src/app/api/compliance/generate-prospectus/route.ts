@@ -32,7 +32,7 @@ The prospectus MUST include all of these sections in order:
 1. IMPORTANT NOTICE — Professional investors only (SFO s.14A), jurisdiction disclaimers, not for US persons
 2. EXECUTIVE SUMMARY — Asset type, issuer, key terms overview
 3. ISSUER INFORMATION — Company details, SFC authorisation, regulatory status, track record
-4. KEY TERMS — Token details, face value, coupon/yield/distribution rate, maturity/redemption, unit price, minimum subscription, lock-up period, settlement on Casper Network
+4. KEY TERMS — Token details, face value, coupon/yield/distribution rate, maturity/redemption, unit price, minimum subscription, lock-up period, settlement on Ethereum Sepolia
 5. USE OF PROCEEDS — How funds will be deployed, project description, green framework if applicable
 6. RISK FACTORS — Minimum 6 specific risks drawn from provided risk factors (market risk, liquidity risk, smart contract risk, regulatory risk, concentration risk, currency risk, credit risk as applicable)
 7. SFC TOKENISATION COMPLIANCE — Casper-native issuance workflow, identity-registry KYC gating, compliance-oracle scoring, transfer controls

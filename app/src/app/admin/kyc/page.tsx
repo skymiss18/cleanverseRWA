@@ -1350,7 +1350,7 @@ export default function AdminKYCPage() {
                       <p className="text-[11px] font-mono mt-2 break-all">
                         Tx:{" "}
                         <a
-                          href={selected.explorerUrl ?? `https://testnet.cspr.live/deploy/${selected.txHash}`}
+                          href={selected.explorerUrl ?? `https://sepolia.etherscan.io/tx/${selected.txHash}`}
                           target="_blank" rel="noopener noreferrer"
                           className="text-emerald-700 underline hover:opacity-75"
                         >
@@ -1377,7 +1377,7 @@ export default function AdminKYCPage() {
                       <p className="text-[11px] font-mono mt-2 break-all">
                         Tx:{" "}
                         <a
-                          href={selected.explorerUrl ?? `https://testnet.cspr.live/deploy/${selected.txHash}`}
+                          href={selected.explorerUrl ?? `https://sepolia.etherscan.io/tx/${selected.txHash}`}
                           target="_blank" rel="noopener noreferrer"
                           className="text-red-600 underline hover:opacity-75"
                         >

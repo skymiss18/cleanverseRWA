@@ -427,7 +427,7 @@ Assignment Prohibition: ${contract.hasAssignmentProhibition ? "YES - CRITICAL IS
 === TOKENISATION STRUCTURE ===
 This trade receivable is being tokenised under the SFC Circular on Tokenisation of SFC-authorised Products (Nov 2023).
 Tokens represent legal claims on the above invoice receivable, distributed exclusively to Professional Investors.
-KYC/AML verified investors are registered in IdentityRegistry.sol on Casper Network.
+KYC/AML verified investors are registered in IdentityRegistry.sol on Ethereum Sepolia.
 Compliance score from AI oracle is written on-chain via ComplianceOracle.sol.
 `.trim();
 }

@@ -11,6 +11,16 @@ import { encodeAbiParameters, formatUnits, getAddress, isAddress, keccak256, par
 
 const FALLBACK_ASSET_NAME = "Harbour Infrastructure Bond Token (HIBT)";
 const HIBT_FACE_VALUE_USD = 1000;
+type AssetType = "Bond" | "GreenBond" | "REIT" | "TradeReceivable";
+
+type IssuanceMetadata = {
+  id?: string;
+  asset?: string;
+  type?: string;
+  status?: string;
+  unitPrice?: string | number;
+  complianceScore?: number;
+};
 
 const ATOKEN_BALANCE_ABI = [
   {
@@ -29,21 +39,32 @@ const ATOKEN_BALANCE_ABI = [
   },
 ] as const;
 
-function latestIssuedAToken() {
+function issuedATokens() {
   return readATokenApplications()
     .filter((application) => application.applyStatus === "ISSUED" && isAddress(application.atokenAddress ?? ""))
-    .sort((left, right) => Date.parse(right.lastSyncedAt) - Date.parse(left.lastSyncedAt))[0] ?? null;
+    .sort((left, right) => Date.parse(right.lastSyncedAt) - Date.parse(left.lastSyncedAt));
 }
 
-function approvedUnitPrice(issuanceId: string | undefined) {
-  if (!issuanceId) return HIBT_FACE_VALUE_USD;
+function approvedIssuances() {
   try {
     const raw = readFileSync(join(process.cwd(), "data", "sfc-inbox.json"), "utf-8");
-    const records = JSON.parse(raw) as Array<{ id?: string; status?: string; unitPrice?: string | number }>;
-    const unitPrice = Number(records.find((record) => record.id === issuanceId && record.status === "Approved")?.unitPrice);
-    return Number.isFinite(unitPrice) && unitPrice > 0 ? unitPrice : HIBT_FACE_VALUE_USD;
+    const records = JSON.parse(raw) as IssuanceMetadata[];
+    return new Map(records.filter((record) => record.status === "Approved" && record.id).map((record) => [record.id as string, record]));
   } catch {
-    return HIBT_FACE_VALUE_USD;
+    return new Map<string, IssuanceMetadata>();
+  }
+}
+
+function normalizedAssetType(value: string | undefined): AssetType {
+  return value === "Bond" || value === "GreenBond" || value === "REIT" || value === "TradeReceivable" ? value : "Bond";
+}
+
+function holdingTerms(assetType: AssetType) {
+  switch (assetType) {
+    case "REIT": return { yield: "--", maturity: undefined, coupon: "Income distribution" };
+    case "TradeReceivable": return { yield: "--", maturity: undefined, coupon: "Receivable settlement" };
+    case "GreenBond": return { yield: "5.5%", maturity: "15 Jul 2031", coupon: "5.50% p.a." };
+    default: return { yield: "5.5%", maturity: "15 Jul 2031", coupon: "5.50% p.a." };
   }
 }
 
@@ -219,18 +240,41 @@ export async function GET(req: NextRequest) {
 
   const harbourTokenAddr = tokenAddress();
   const harbourConfigured = harbourTokenAddr !== "0x0000000000000000000000000000000000000000";
-  const atokenApplication = latestIssuedAToken();
+  const applications = issuedATokens();
+  const issuanceMap = approvedIssuances();
+  const atokenPositions = await Promise.all(applications.map(async (application) => {
+    const address = getAddress(application.atokenAddress as string);
+    const issuance = issuanceMap.get(application.issuanceId);
+    const assetType = normalizedAssetType(application.assetType ?? issuance?.type);
+    const unitPrice = Number(issuance?.unitPrice);
+    const unitPriceUsd = Number.isFinite(unitPrice) && unitPrice > 0 ? unitPrice : HIBT_FACE_VALUE_USD;
+    let tokens = 0;
+    let live = false;
+    try {
+      const [rawBalance, decimals] = await Promise.all([
+        publicClient.readContract({ address, abi: ATOKEN_BALANCE_ABI, functionName: "balanceOf", args: [wallet] }),
+        publicClient.readContract({ address, abi: ATOKEN_BALANCE_ABI, functionName: "decimals" }),
+      ]);
+      tokens = Number(formatUnits(rawBalance, decimals));
+      live = true;
+    } catch {
+      live = false;
+    }
+    return { application, address, issuance, assetType, unitPriceUsd, tokens, live };
+  }));
+  const primaryPosition = atokenPositions.find((position) => position.tokens > 0) ?? atokenPositions[0] ?? null;
+  const atokenApplication = primaryPosition?.application ?? null;
   const atokenAddress = atokenApplication?.atokenAddress ? getAddress(atokenApplication.atokenAddress) : null;
   const fallbackAsset = await findPrimaryAsset(harbourConfigured);
   const primaryAssetName = atokenApplication?.assetName ?? fallbackAsset.assetName;
   const primaryAssetCode = atokenApplication?.tokenSymbol ?? fallbackAsset.assetCode;
-  const unitPriceUsd = approvedUnitPrice(atokenApplication?.issuanceId);
+  const unitPriceUsd = primaryPosition?.unitPriceUsd ?? HIBT_FACE_VALUE_USD;
   const assetId = buildAssetId(primaryAssetName);
 
-  let hibtTokens = 0;
-  let livePosition = false;
+  let hibtTokens = primaryPosition?.tokens ?? 0;
+  let livePosition = primaryPosition?.live ?? false;
 
-  if (atokenAddress) {
+  if (!primaryPosition && atokenAddress) {
     try {
       const [rawBalance, decimals] = await Promise.all([
         publicClient.readContract({
@@ -258,19 +302,33 @@ export async function GET(req: NextRequest) {
   const upcomingPayoutUsd = hibtTokens * nextCoupon.amountPerTokenUsd;
   const hibtValueUsd = hibtTokens * unitPriceUsd;
 
-  const liveHibtHolding = {
-    name: `${primaryAssetName} (${primaryAssetCode})`,
-    type: "Bond",
-    balance: hibtTokens.toLocaleString("en-US", { maximumFractionDigits: 2 }),
-    value: formatUsd(hibtValueUsd),
-    yield: `${(HIBT_COUPON_RATE * 100).toFixed(1)}%`,
-    score: 91,
-    maturity: "15 Jul 2031",
-    coupon: "5.50% p.a.",
-    live: livePosition,
-  };
-
-  const holdings = [liveHibtHolding];
+  const holdings = atokenPositions.length > 0
+    ? atokenPositions.map((position) => {
+        const terms = holdingTerms(position.assetType);
+        return {
+          name: `${position.application.assetName} (${position.application.tokenSymbol})`,
+          type: position.assetType,
+          balance: position.tokens.toLocaleString("en-US", { maximumFractionDigits: 6 }),
+          value: formatUsd(position.tokens * position.unitPriceUsd),
+          yield: terms.yield,
+          score: position.issuance?.complianceScore ?? 0,
+          maturity: terms.maturity,
+          coupon: terms.coupon,
+          live: position.live,
+          tokenAddress: position.address,
+        };
+      })
+    : [{
+        name: `${primaryAssetName} (${primaryAssetCode})`,
+        type: "Bond" as AssetType,
+        balance: hibtTokens.toLocaleString("en-US", { maximumFractionDigits: 2 }),
+        value: formatUsd(hibtValueUsd),
+        yield: `${(HIBT_COUPON_RATE * 100).toFixed(1)}%`,
+        score: 91,
+        maturity: "15 Jul 2031",
+        coupon: "5.50% p.a.",
+        live: livePosition,
+      }];
 
   return NextResponse.json({
     walletAddress: wallet,

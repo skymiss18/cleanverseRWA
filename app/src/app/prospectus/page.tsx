@@ -112,7 +112,7 @@ const DEMO_DATA: FormState = {
 
   rating:           "BBB+ (S&P equivalent)",
 
-  description:      "Senior secured institutional bond backed by a diversified portfolio of Asia-Pacific commercial real estate assets and trade finance receivables. Issued on Casper Network as ERC-3643 tokens.",
+  description:      "Senior secured institutional bond backed by a diversified portfolio of Asia-Pacific commercial real estate assets and trade finance receivables. Issued on Ethereum Sepolia as ERC-3643 tokens.",
 
   regulatoryStatus: "Issuer holds SFC Type 1 (Dealing in Securities) and Type 9 (Asset Management) licences",
 
@@ -148,7 +148,7 @@ const REIT_DEMO_DATA: FormState = {
 
   rating:           "Independent property valuation by JLL",
 
-  description:      "Fractional ownership in a Kowloon East Grade-A commercial office portfolio with quarterly rental distributions and ERC-3643 transfer restrictions on Casper Network.",
+  description:      "Fractional ownership in a Kowloon East Grade-A commercial office portfolio with quarterly rental distributions and ERC-3643 transfer restrictions on Ethereum Sepolia.",
 
   regulatoryStatus: "Managed by an SFC Type 9 licensed REIT manager under the SFC REIT Code and tokenisation circular",
 

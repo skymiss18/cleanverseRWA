@@ -12,7 +12,7 @@
     "mintTxHash": "",
     "paymentStatus": "Pending",
     "mintStatus": "PendingFinality",
-    "pendingReason": "Casper payment transaction is not finalized or RPC lookup is unavailable yet: failed to send http request, details: Network Error",
+    "pendingReason": "Payment transaction is not finalized or RPC lookup is unavailable yet: failed to send http request, details: Network Error",
     "error": null,
     "createdAt": "2026-07-22T01:56:02.043Z",
     "updatedAt": "2026-07-22T01:56:02.043Z"

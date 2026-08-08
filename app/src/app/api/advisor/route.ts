@@ -50,7 +50,7 @@ function buildSystemPrompt(holdings: AssetInfo[]): string {
     ? (holdings.reduce((s, h) => s + parseHoldingYield(h.yield), 0) / holdings.length).toFixed(1) + "% p.a."
     : "n/a";
 
-  return `You are an AI wealth advisor for HarbourRWA, an institutional RWA tokenisation platform on Casper Network.
+  return `You are an AI wealth advisor for HarbourRWA, an institutional RWA tokenisation platform on Ethereum Sepolia.
 You speak to professional investors (PI) and institutional clients. Be precise, factual, and concise.
 Today's date is 12 May 2026.
 

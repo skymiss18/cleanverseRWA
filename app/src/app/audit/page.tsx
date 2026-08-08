@@ -763,7 +763,7 @@ export default function AuditPage() {
 
           { label: "AI Deep Audit",    desc: "Qwen2.5-72B ...logic, access control, compliance bypass" },
 
-          { label: "On-Chain Proof",   desc: "Audit fingerprint permanently anchored on Casper blockchain ...tamper-proof, publicly verifiable" },
+          { label: "On-Chain Proof",   desc: "Audit fingerprint permanently anchored on Ethereum blockchain ...tamper-proof, publicly verifiable" },
 
         ].map((m) => (
 

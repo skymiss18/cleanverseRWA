@@ -1236,7 +1236,7 @@ export default function CompliancePage() {
 
               {result.onChain && result.txHash && (
 
-                <a href={result.explorerUrl ?? `https://testnet.cspr.live/deploy/${result.txHash}`} target="_blank" rel="noopener noreferrer"
+                <a href={result.explorerUrl ?? `https://sepolia.etherscan.io/tx/${result.txHash}`} target="_blank" rel="noopener noreferrer"
 
                   className="text-[11px] font-mono text-blue-400 hover:text-blue-300 transition-colors">
 

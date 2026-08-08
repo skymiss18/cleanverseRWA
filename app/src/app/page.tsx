@@ -1,41 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useRole } from "@/lib/role-context";
-import { getRoleById } from "@/lib/roles";
-
 export default function HomePage() {
-  const { selectedRole, isLoading } = useRole();
-  const router = useRouter();
-
-  // Redirect to role home if already logged in
-  useEffect(() => {
-    if (!isLoading && selectedRole) {
-      const role = getRoleById(selectedRole);
-      if (role) {
-        router.push(role.links[0].href);
-      }
-    }
-  }, [selectedRole, isLoading, router]);
-
-  // Show loading while checking role
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-8 h-8 border-2 border-slate-300 border-t-slate-800 rounded-full animate-spin mx-auto mb-3" />
-          <div className="text-sm text-slate-600">Loading...</div>
-        </div>
-      </div>
-    );
-  }
-
-  // If logged in, don't show home page (redirect will happen)
-  if (selectedRole) {
-    return null;
-  }
-
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -321,7 +286,7 @@ export default function HomePage() {
                 </li>
               ))}
             </ol>
-            <a href="/compliance" className="btn-primary mt-1 w-full text-center text-sm font-semibold py-2.5 rounded-lg text-white">
+            <a href="/tokenize" className="btn-primary mt-1 w-full text-center text-sm font-semibold py-2.5 rounded-lg text-white">
               Start Issuing →
             </a>
           </div>

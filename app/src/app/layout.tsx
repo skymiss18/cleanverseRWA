@@ -8,7 +8,7 @@ import { RoleGuard } from "@/components/RoleGuard";
 export const metadata: Metadata = {
   title: "NexusRWA | Institutional RWA Tokenisation Platform",
   description:
-    "Enterprise-grade RWA tokenisation platform for professional investors. SFC compliant on Casper Network.",
+    "Enterprise-grade RWA tokenisation platform for professional investors. SFC compliant on Ethereum Sepolia.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -808,13 +808,13 @@ export default function TokenizePage() {
                 </div>
               )}
 
-              {selected.status === "Approved" && /green\s*bond/i.test(`${selected.type} ${selected.asset}`) && (
+              {selected.status === "Approved" && ASSET_TYPES.some(({ value }) => value === selected.type) && (
                 <div className="rounded-lg p-5" style={{ background: "#f5faf7", border: "1px solid rgba(5,150,105,0.28)" }}>
                   <div className="flex items-start justify-between gap-4 mb-4">
                     <div>
                       <div className="text-[10px] font-bold uppercase tracking-widest text-emerald-700">Cleanverse CVA · Ethereum</div>
                       <h3 className="text-sm font-bold text-slate-800 mt-1">Launch compliant A-Token</h3>
-                      <p className="text-[11px] text-slate-600 mt-1">The server derives the investor rule from the approved green-bond policy. Only ISSUED status opens subscriptions.</p>
+                      <p className="text-[11px] text-slate-600 mt-1">The server derives the investor rule from the approved {selected.type} policy. Only ISSUED status opens subscriptions.</p>
                     </div>
                     <span className="text-[10px] font-bold px-2 py-1 rounded" style={{ background: atokenApplication?.subscriptionOpen ? "#dcfce7" : "#fef3c7", color: atokenApplication?.subscriptionOpen ? "#166534" : "#92400e" }}>
                       {atokenApplication?.applyStatus ?? "NOT LAUNCHED"}

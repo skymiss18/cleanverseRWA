@@ -105,7 +105,7 @@ export default async function EvidencePage() {
 
   const deploymentRows = Object.entries(deployments)
     .map(([id, record]) => ({ id, ...record }))
-    .filter((record) => (record.network ?? "").toLowerCase().includes("casper"))
+    .filter((record) => (record.network ?? "").toLowerCase().includes("ethereum") || (record.network ?? "").toLowerCase().includes("sepolia"))
     .slice(0, 8);
 
   const latestKyc = [...kycApps]
@@ -148,7 +148,7 @@ export default async function EvidencePage() {
         <h1 className="text-2xl sm:text-3xl font-semibold text-slate-900 mt-1">Judge Evidence Center</h1>
         <p className="text-sm text-slate-700 mt-2 max-w-3xl leading-relaxed">
           Live evidence of AI-driven compliance: off-chain document screening, zero-knowledge credential commitment issuance,
-          autonomous lifecycle monitoring, and upgradeable Casper contract governance.
+          autonomous lifecycle monitoring, and upgradeable smart contract governance.
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4 text-[11px]">
           <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.75)", border: "1px solid rgba(29,78,216,0.15)" }}>
@@ -194,7 +194,7 @@ export default async function EvidencePage() {
           </div>
         </div>
         <p className="text-[11px] text-slate-400 mt-3">
-          Each active credential is soulbound (non-transferable) and currently backed by the Casper IdentityRegistry contract shown above.
+          Each active credential is soulbound (non-transferable) and currently backed by the IdentityRegistry contract shown above.
         </p>
       </section>
 
@@ -204,7 +204,7 @@ export default async function EvidencePage() {
         <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-600 mb-3">Verification Ledger</h2>
         <p className="text-xs text-slate-500 mb-3">
           Quantified, checkable evidence — not just a demo. Counts are read live from source/test files, contract
-          hashes and transaction hashes below resolve on the Casper testnet explorer.
+          hashes and transaction hashes below resolve on the Sepolia testnet explorer.
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
           <div className="rounded-lg p-3" style={{ background: "rgba(29,78,216,0.05)", border: "1px solid rgba(29,78,216,0.15)" }}>
@@ -220,14 +220,14 @@ export default async function EvidencePage() {
             <div className="text-lg font-bold text-blue-700">{verificationLedger.totalTests}</div>
           </div>
           <div className="rounded-lg p-3" style={{ background: "rgba(100,116,139,0.05)", border: "1px solid rgba(100,116,139,0.15)" }}>
-            <div className="text-slate-500">Live Casper Deployments</div>
+            <div className="text-slate-500">Live Smart Contract Deployments</div>
             <div className="text-lg font-bold text-slate-700">{deploymentRows.length}</div>
           </div>
         </div>
       </section>
 
       <section className="rounded-xl p-5" style={{ background: "#ffffff", border: "1px solid rgba(0,0,0,0.10)" }}>
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-600 mb-3">Casper Deployments</h2>
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-600 mb-3">Contract Deployments</h2>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>

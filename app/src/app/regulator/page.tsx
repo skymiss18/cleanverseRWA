@@ -136,7 +136,7 @@ const STAT_CARDS = [
 
     value: "5",
 
-    sub: "ERC-3643 · Casper Network",
+    sub: "ERC-3643 · Ethereum Sepolia",
 
     icon: "💰",
 
@@ -338,7 +338,7 @@ export default function RegulatorPage() {
 
                 <p className="text-sm text-slate-400">
 
-                  On-chain compliance records · NexusRWA Protocol · Casper Network
+                  On-chain compliance records · NexusRWA Protocol · Ethereum Sepolia
 
                 </p>
 

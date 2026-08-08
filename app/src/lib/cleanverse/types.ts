@@ -73,6 +73,7 @@ export type ATokenApplyStatusResult = {
 export type ATokenApplicationRecord = {
   issuanceId: string;
   assetName: string;
+  assetType?: "Bond" | "GreenBond" | "REIT" | "TradeReceivable";
   requestId: string;
   issueAssetId: number;
   chain: string;

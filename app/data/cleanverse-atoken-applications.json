@@ -1,5 +1,33 @@
 [
   {
+    "issuanceId": "ISS-DYN-1786152525123",
+    "assetName": "NIBT7",
+    "assetType": "Bond",
+    "requestId": "IA20260808101619948765",
+    "issueAssetId": 298,
+    "chain": "ethereum",
+    "tokenSymbol": "BND525123",
+    "adminAddress": "0xb1B70643589838F8febE3314ec95C56d22aef1C5",
+    "rule": {
+      "allowed_group": "",
+      "allowed_sub_group": "",
+      "min_tier": 30,
+      "min_sub_tier": 0,
+      "is_black_list": false,
+      "countries": [
+        "HK",
+        "SG"
+      ]
+    },
+    "applyStatus": "ISSUED",
+    "subscriptionOpen": true,
+    "submittedAt": "2026-08-08T02:16:33.928Z",
+    "lastSyncedAt": "2026-08-08T02:17:30.237Z",
+    "atokenAddress": "0xc7ce7F96B92EC7fDf13D16E5448c092A8F0743ad",
+    "txHash": "0x8282b2be76e577902d0e2ee3ab417d61b53e872944219e812b498bac767e5c1b",
+    "issueErrorMsg": ""
+  },
+  {
     "issuanceId": "ISS-DYN-1785653804039",
     "assetName": "NIBT5",
     "requestId": "IA20260802154439299688",

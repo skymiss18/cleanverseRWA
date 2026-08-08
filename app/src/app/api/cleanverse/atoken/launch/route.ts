@@ -16,6 +16,19 @@ type IssuanceRecord = {
   type?: string;
 };
 
+type SupportedAssetType = "Bond" | "GreenBond" | "REIT" | "TradeReceivable";
+
+const ASSET_TYPE_CONFIG: Record<SupportedAssetType, { prefix: string; label: string }> = {
+  Bond: { prefix: "BND", label: "Bond" },
+  GreenBond: { prefix: "NGB", label: "Green Bond" },
+  REIT: { prefix: "REIT", label: "REIT" },
+  TradeReceivable: { prefix: "TR", label: "Trade Receivable" },
+};
+
+function supportedAssetType(value: string | undefined): SupportedAssetType | null {
+  return value && value in ASSET_TYPE_CONFIG ? value as SupportedAssetType : null;
+}
+
 function readApprovedIssuance(issuanceId: string) {
   const file = path.join(process.cwd(), "data", "sfc-inbox.json");
   const records = JSON.parse(fs.readFileSync(file, "utf8")) as IssuanceRecord[];
@@ -29,21 +42,25 @@ function parseCountries(value: string | undefined) {
     .filter((country) => /^[A-Z]{2}$/.test(country))));
 }
 
-function greenBondRule(): CleanverseRule {
+function assetRule(assetType: SupportedAssetType): CleanverseRule {
+  const prefix = `CLEANVERSE_${assetType.replace(/([a-z])([A-Z])/g, "$1_$2").toUpperCase()}`;
+  const env = (suffix: string) => process.env[`${prefix}_${suffix}`] ?? process.env[`CLEANVERSE_GREEN_BOND_${suffix}`];
   return {
-    allowed_group: process.env.CLEANVERSE_GREEN_BOND_ALLOWED_GROUP?.trim() ?? "",
-    allowed_sub_group: process.env.CLEANVERSE_GREEN_BOND_ALLOWED_SUB_GROUP?.trim() ?? "",
-    min_tier: Number(process.env.CLEANVERSE_GREEN_BOND_MIN_TIER ?? 30),
-    min_sub_tier: Number(process.env.CLEANVERSE_GREEN_BOND_MIN_SUB_TIER ?? 0),
-    is_black_list: process.env.CLEANVERSE_GREEN_BOND_COUNTRY_MODE === "blacklist",
-    countries: parseCountries(process.env.CLEANVERSE_GREEN_BOND_COUNTRIES),
+    allowed_group: env("ALLOWED_GROUP")?.trim() ?? "",
+    allowed_sub_group: env("ALLOWED_SUB_GROUP")?.trim() ?? "",
+    min_tier: Number(env("MIN_TIER") ?? 30),
+    min_sub_tier: Number(env("MIN_SUB_TIER") ?? 0),
+    is_black_list: env("COUNTRY_MODE") === "blacklist",
+    countries: parseCountries(env("COUNTRIES")),
   };
 }
 
-function tokenSymbol(issuanceId: string) {
-  const configured = process.env.CLEANVERSE_GREEN_BOND_SYMBOL?.trim().toUpperCase();
+function tokenSymbol(issuanceId: string, assetType: SupportedAssetType) {
+  const typeKey = assetType.replace(/([a-z])([A-Z])/g, "$1_$2").toUpperCase();
+  const configured = process.env[`CLEANVERSE_${typeKey}_SYMBOL`]?.trim().toUpperCase();
   if (configured) return configured;
-  return `NGB${issuanceId.replace(/[^A-Za-z0-9]/g, "").slice(-7).toUpperCase()}`.slice(0, 12);
+  const suffix = issuanceId.replace(/[^A-Za-z0-9]/g, "").slice(-6).toUpperCase();
+  return `${ASSET_TYPE_CONFIG[assetType].prefix}${suffix}`.slice(0, 12);
 }
 
 export async function GET(req: NextRequest) {
@@ -67,8 +84,9 @@ export async function POST(req: Request) {
     if (!issuance) {
       return NextResponse.json({ error: "Only an internally approved issuance can launch an A-Token" }, { status: 409 });
     }
-    if (!/green\s*bond/i.test(`${issuance.type ?? ""} ${issuance.asset ?? ""}`)) {
-      return NextResponse.json({ error: "The hackathon launch route currently supports approved green bonds only" }, { status: 422 });
+    const assetType = supportedAssetType(issuance.type);
+    if (!assetType) {
+      return NextResponse.json({ error: "Supported asset types are Bond, GreenBond, REIT, and TradeReceivable" }, { status: 422 });
     }
 
     const existing = findLatestATokenApplicationForIssuance(issuanceId);
@@ -76,17 +94,18 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: true, existing: true, application: existing }, { status: 200 });
     }
 
-    const icon = process.env.CLEANVERSE_GREEN_BOND_ICON_URL?.trim();
+    const typeKey = assetType.replace(/([a-z])([A-Z])/g, "$1_$2").toUpperCase();
+    const icon = (process.env[`CLEANVERSE_${typeKey}_ICON_URL`] ?? process.env.CLEANVERSE_GREEN_BOND_ICON_URL)?.trim();
     if (!icon || !/^https:\/\//i.test(icon)) {
-      return NextResponse.json({ error: "CLEANVERSE_GREEN_BOND_ICON_URL must be configured with an HTTPS URL" }, { status: 503 });
+      return NextResponse.json({ error: `CLEANVERSE_${typeKey}_ICON_URL or the shared fallback icon must be an HTTPS URL` }, { status: 503 });
     }
 
-    const rule = greenBondRule();
-    const symbol = tokenSymbol(issuanceId);
+    const rule = assetRule(assetType);
+    const symbol = tokenSymbol(issuanceId, assetType);
     const chain = process.env.CLEANVERSE_DEFAULT_CHAIN?.trim() || "ethereum";
     const response = await launchAToken(getCleanverseClient(), {
       chain,
-      token_name: issuance.asset?.trim() || "Nexus Verified Green Bond",
+      token_name: issuance.asset?.trim() || `Nexus Verified ${ASSET_TYPE_CONFIG[assetType].label}`,
       token_symbol: symbol,
       decimals: 6,
       admin_address: adminAddress,
@@ -101,7 +120,8 @@ export async function POST(req: Request) {
     const now = new Date().toISOString();
     const record = upsertATokenApplication({
       issuanceId,
-      assetName: issuance.asset?.trim() || "Nexus Verified Green Bond",
+      assetName: issuance.asset?.trim() || `Nexus Verified ${ASSET_TYPE_CONFIG[assetType].label}`,
+      assetType,
       requestId: response.data.requestId,
       issueAssetId: response.data.issueAssetId,
       chain,

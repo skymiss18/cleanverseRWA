@@ -93,7 +93,7 @@ export function recommendKycAction(
     confidence = 0.84;
   }
 
-  const issuerDomain = options?.issuerDomain?.trim() || "nexusrwa.casper";
+  const issuerDomain = options?.issuerDomain?.trim() || "nexusrwa.eth";
   const saltHex = generateCredentialSaltHex();
   const provider = getZkProvider();
   return (async () => {

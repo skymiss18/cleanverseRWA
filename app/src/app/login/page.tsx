@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useWallet } from "@/lib/wallet-context";
 import { useRole } from "@/lib/role-context";
@@ -8,18 +7,8 @@ import { ROLES, type RoleId } from "@/lib/roles";
 
 export default function LoginPage() {
   const { wallet, connect, connecting } = useWallet();
-  const { selectedRole, setRole } = useRole();
+  const { setRole } = useRole();
   const router = useRouter();
-
-  // If already has a role, redirect to role home
-  useEffect(() => {
-    if (selectedRole) {
-      const role = ROLES.find((r) => r.id === selectedRole);
-      if (role) {
-        router.push(role.links[0].href);
-      }
-    }
-  }, [selectedRole, router]);
 
   const handleRoleSelect = (roleId: RoleId) => {
     setRole(roleId);

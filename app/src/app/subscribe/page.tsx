@@ -29,6 +29,8 @@ type ApprovedAsset = {
   unitPrice?: string;
 };
 
+type AssetType = "Bond" | "GreenBond" | "REIT" | "TradeReceivable";
+
 type SponsorAsset = {
   assetName: string;
   unitPrice?: string;
@@ -37,6 +39,7 @@ type SponsorAsset = {
 type AssetOption = {
   id?: string;
   name: string;
+  type: AssetType;
   unitPrice: number;
   tokenSymbol?: string;
   atokenAddress?: string;
@@ -143,9 +146,9 @@ export default function SubscribePage() {
   const [cleanverseChecking, setCleanverseChecking] = useState(false);
 
   const assetCode = buildRefPrefix(assetName).replace("-", "");
-  const selectedAsset = assetSelected
-    ? approvedAssets.find((asset) => asset.name === assetName) ?? { name: assetName, unitPrice: 1000 }
-    : { name: DEFAULT_ASSET_NAME, unitPrice: 1000 };
+  const selectedAsset: AssetOption = assetSelected
+    ? approvedAssets.find((asset) => asset.name === assetName) ?? { name: assetName, type: "Bond", unitPrice: 1000 }
+    : { name: DEFAULT_ASSET_NAME, type: "Bond", unitPrice: 1000 };
   const tokenSymbol = atokenApplication?.tokenSymbol ?? selectedAsset.tokenSymbol ?? assetCode;
   const faceValue = selectedAsset.unitPrice;
 
@@ -181,7 +184,7 @@ export default function SubscribePage() {
           const unitPrice = Number(submission.unitPrice ?? sponsorPriceMap.get(submission.asset) ?? 0);
           if (unitPrice <= 0) continue;
           if (!uniqueMap.has(submission.asset)) {
-            uniqueMap.set(submission.asset, { id: submission.id, name: submission.asset, unitPrice });
+            uniqueMap.set(submission.asset, { id: submission.id, name: submission.asset, type: submission.type as AssetType, unitPrice });
           }
         }
 
@@ -199,7 +202,7 @@ export default function SubscribePage() {
           : "";
 
         if (preferredAssetName && !finalList.some((asset) => asset.name === preferredAssetName)) {
-          finalList.unshift({ name: preferredAssetName, unitPrice: 1000 });
+          finalList.unshift({ name: preferredAssetName, type: "Bond", unitPrice: 1000 });
         }
 
         const subscribableAssets = (await Promise.all(finalList.map(async (asset) => {
@@ -274,6 +277,27 @@ export default function SubscribePage() {
   const custodyAnn   = principal * CUSTODY_FEE;
   const totalDue     = principal + subFee;
   const semiCoupon   = tokenCount * faceValue * COUPON_RATE / 2;
+  const fixedIncomeAsset = selectedAsset.type === "Bond" || selectedAsset.type === "GreenBond";
+  const assetTerms = selectedAsset.type === "REIT"
+    ? [
+        { label: "Income", value: "Property distributions" },
+        { label: "Term", value: "Per trust terms" },
+        { label: "Risk", value: "Property portfolio" },
+        { label: "Settlement", value: "T+2 on-chain" },
+      ]
+    : selectedAsset.type === "TradeReceivable"
+      ? [
+          { label: "Return", value: "Receivable discount" },
+          { label: "Term", value: "Invoice due date" },
+          { label: "Risk", value: "Obligor credit" },
+          { label: "Settlement", value: "T+2 on-chain" },
+        ]
+      : [
+          { label: "Coupon Rate", value: "5.50% p.a." },
+          { label: "Maturity", value: "15 Jul 2031" },
+          { label: "Rating", value: "Moody's A2 / S&P A" },
+          { label: "Settlement", value: "T+2 on-chain" },
+        ];
   const paymentFinal = paymentStatus === "Confirmed" || paymentStatus === "Skipped";
   const paymentStatusText = paymentFinal ? "Payment confirmed" : paymentStatus === "Pending" ? "Payment pending finality" : "Payment submitted";
 
@@ -745,22 +769,19 @@ export default function SubscribePage() {
                   <span>Custody fee (ongoing)</span>
                   <span className="font-mono">{displayAmt(custodyAnn)} p.a.</span>
                 </div>
-                <div className="flex justify-between pt-1 border-t" style={{ borderColor: "rgba(0,0,0,0.10)" }}>
-                  <span className="text-slate-500">Semi-annual coupon income</span>
-                  <span className="font-mono text-emerald-500">{displayAmt(semiCoupon)} per payment</span>
-                </div>
+                {fixedIncomeAsset && (
+                  <div className="flex justify-between pt-1 border-t" style={{ borderColor: "rgba(0,0,0,0.10)" }}>
+                    <span className="text-slate-500">Semi-annual coupon income</span>
+                    <span className="font-mono text-emerald-500">{displayAmt(semiCoupon)} per payment</span>
+                  </div>
+                )}
               </div>
             </div>
           )}
 
-          {/* Bond summary */}
+          {/* Asset terms summary */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-[11px]">
-            {[
-              { label: "Coupon Rate", value: "5.50% p.a." },
-              { label: "Maturity",    value: "15 Jul 2031" },
-              { label: "Rating",      value: "Moody's A2 / S&P A" },
-              { label: "Settlement",  value: "T+2 on-chain" },
-            ].map((m) => (
+            {assetTerms.map((m) => (
               <div key={m.label} className="rounded p-2.5" style={{ background: "#ffffff", border: "1px solid rgba(0,0,0,0.10)" }}>
                 <div className="text-slate-600 text-[10px]">{m.label}</div>
                 <div className="text-slate-700 font-medium mt-0.5">{m.value}</div>
@@ -797,7 +818,7 @@ export default function SubscribePage() {
                 className="mt-0.5 shrink-0 accent-blue-500" />
               <div className="text-xs text-slate-600 leading-relaxed">
                 <span className="text-slate-900 font-medium">Prospectus Receipt Confirmation: </span>
-                I confirm I have received, read, and understood the NIBT Prospectus (SFC/NIBT/2026-B/001),
+                I confirm I have received, read, and understood the {assetName} offering document,
                 including all risk factors, fee structures, and redemption terms. I acknowledge the document
                 is committed to EigenDA with on-chain hash in the token contract.
               </div>

@@ -706,7 +706,7 @@ export default function PortfolioPage() {
             <div className="flex items-center justify-between mb-4">
               <div>
                 <div className="text-sm font-semibold text-slate-900">Ethereum Yield Routing</div>
-                <div className="text-[11px] text-slate-600 mt-0.5">ETH + NGB2026 positions · AI-driven allocation on Ethereum Sepolia</div>
+                <div className="text-[11px] text-slate-600 mt-0.5">ETH + regulated RWA A-Token positions · AI-driven allocation on Ethereum Sepolia</div>
               </div>
               <div className="flex items-center gap-2">
                 <div className="flex gap-0 rounded overflow-hidden" style={{ border: "1px solid rgba(0,0,0,0.10)" }}>
@@ -735,7 +735,7 @@ export default function PortfolioPage() {
               <div className="grid grid-cols-2 gap-4">
                 {[
                   { label: "ETH", sublabel: "Ethereum native asset · liquid", apy: "3.20%", pct: 45, color: "#1a56db", tag: "Sepolia ETH" },
-                  { label: assetCode, sublabel: "Tokenized green bond · fixed coupon", apy: "5.50%", pct: 55, color: "#16a34a", tag: "ERC-20 A-Token" },
+                  { label: assetCode, sublabel: "Regulated tokenized RWA position", apy: "5.50%", pct: 55, color: "#16a34a", tag: "ERC-20 A-Token" },
                 ].map((item) => (
                   <div key={item.label} className="rounded p-4" style={{ background: "#ffffff", border: "1px solid rgba(0,0,0,0.10)" }}>
                     <div className="flex items-center justify-between mb-2">
@@ -878,7 +878,7 @@ export default function PortfolioPage() {
               <div className="px-5 pt-2 pb-4 space-y-4">
                 {[
                   { name: "ETH", desc: "Ethereum native asset · staking yield", apy: "3.20%", share: "45%" },
-                  { name: assetCode, desc: "Tokenized green bond · fixed coupon", apy: "5.50%", share: "55%" },
+                  { name: assetCode, desc: "Regulated tokenized RWA position", apy: "5.50%", share: "55%" },
                 ].map((y) => (
                   <div key={y.name} className="flex items-center justify-between">
                     <div>

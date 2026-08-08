@@ -23,7 +23,7 @@
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "snarkjs": "^0.7.6",
-    "viem": "^2.51.3",
+    "viem": "^2.55.10",
     "wagmi": "^2.19.5"
   },
   "devDependencies": {

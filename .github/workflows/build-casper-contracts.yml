@@ -77,7 +77,7 @@ jobs:
           ls -lh dist/casper-contracts/
 
       - name: Upload WASM artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: casper-contract-wasm
           path: dist/casper-contracts/*.wasm

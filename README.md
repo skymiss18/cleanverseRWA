@@ -1,364 +1,300 @@
 # NexusRWA
 
-**NexusRWA** is an agentic, AI-assisted Real-World Asset (RWA) issuance platform built for the **Casper Agentic Buildathon 2026 - Final Round** (Casper Innovation Track: Agentic AI x DeFi x RWA). It lets an issuer draft an offering, have an AI agent score it against jurisdictional compliance rules, route it through human regulator/KYC review, and then mint, subscribe, and settle a coupon-bearing token whose full lifecycle is recorded on **Casper Testnet**.
+NexusRWA is an AI-assisted institutional Real-World Asset (RWA) issuance and settlement platform built around **Cleanverse CVI/CVA** and **Ethereum**. It connects prospectus drafting, compliance review, KYC, investor eligibility, A-Token issuance, subscription payment verification, minting, coupon distribution, and portfolio reporting in one auditable workflow.
 
-The project directly targets the buildathon's "AI-Driven Compliance & KYC" and "RWA Oracle Agent" build directions: an AI agent handles document analysis and compliance scoring off-chain, is designed to anchor verifiable evidence on-chain via a Rust/Odra `ComplianceOracle` contract (Testnet deployment pending), and gates minting/subscription through an on-chain `IdentityRegistry` already live on Casper Testnet, while humans (regulator, KYC admin) retain final authority — combining autonomous AI agency with trust-minimized, auditable on-chain state.
+Cleanverse **CVI A-Pass** defines who is eligible to invest. Cleanverse **CVA A-Token** rules define what each eligible wallet may hold. NexusRWA verifies both when a subscription is created and again when payment is confirmed, so expired, frozen, or rule-incompatible identities fail closed before minting.
 
-## Why This Project Fits the Final Round
+## Why NexusRWA
 
-| Judging Criterion | How NexusRWA Delivers |
+Institutional RWA issuance is still fragmented across document preparation, regulatory review, KYC/AML, token administration, payments, and investor reporting. A one-time KYC decision also becomes stale when an identity expires, is frozen, or no longer satisfies an asset's rules.
+
+NexusRWA turns compliance from a report into an execution gate:
+
+- AI assists with prospectus drafting and SFC-oriented rule analysis.
+- Licensed intermediaries perform compliance, technical, and KYC/AML review.
+- Regulators approve an issuance or request changes.
+- Cleanverse CVI issues and verifies investor A-Passes.
+- Cleanverse CVA launches rule-bound A-Tokens.
+- Eligibility is checked before payment and checked again at confirmation.
+- Ethereum transactions prove payment, minting, and coupon distribution.
+
+## Highlights
+
+| Area | Implementation |
 |---|---|
-| **Technical Execution** | Three Rust/Odra smart contracts (`ComplianceOracle`, `IdentityRegistry`, `TokenCoupon`). `IdentityRegistry` and `TokenCoupon` are deployed and tested on Casper Testnet with live deploy hashes recorded in `app/data/deployments.json`; `ComplianceOracle` ships complete Rust/Odra source and passes local unit tests, with Testnet deployment as the next step. Backed by a Next.js/TypeScript app with real API routes, not just static mockups. See [Architecture](#architecture). |
-| **Innovation & Originality** | Combines AI-generated compliance scoring, on-chain score anchoring, and identity-gated token minting into a single reproducible pipeline — an agentic compliance officer that a human can audit and override. |
-| **Use of AI / Agentic Systems** | An AI agent drafts prospectus content, scores it against `app/compliance-rules/sfc-rules.json`, and produces a report hash that is submitted on-chain; an advisor flow assists investors during subscription. |
-| **Real-World Applicability** | Rules model real securities-style compliance concepts (issuer disclosure, investor eligibility, coupon terms) and include asset-class packs for bonds, trade receivables, green bonds, and REITs. |
-| **User Experience & Design** | End-to-end UI covering issuer, regulator, KYC admin, and investor journeys (`/prospectus`, `/tokenize`, `/compliance`, `/regulator`, `/kyc`, `/subscribe`, `/portfolio`). |
-| **Working Smart Contracts** | Live Casper Testnet deploy hash, contract hash, and explorer link recorded in `app/data/deployments.json` and reproduced in this README. |
-| **Long-Term Launch Plans** | See [Roadmap](#roadmap) for the 3-month and 6-12 month plan to harden and expand the product. |
-| **Potential for Long-Term Impact** | A reusable agentic-compliance pattern that can be extended to new jurisdictions and asset classes on Casper, growing the ecosystem's RWA tooling. |
-
-## Submission Essentials
-
-Per the official Final Round rules (`document/finalround.md`), every project must ship three things — here is where to find each in this repository:
-
-| Required Item | Where It Is |
-|---|---|
-| Working prototype on Casper Testnet with a transaction-producing on-chain component | `app/data/deployments.json` and `FINAL_SUBMISSION_ADDRESSES.md` |
-| Open-source GitHub repository with README + usage instructions | This repository, plus [Quick Start](#quick-start) and [Reviewer Playbook](#reviewer-playbook-no-marketing-8-12-minutes) |
-| Public demo video | See Demo and BUIDL Links |
-
-
-## Repository Metadata (GitHub)
-
-Set these repository fields in GitHub Settings so reviewers can validate quickly:
-
-- Description: `Agentic RWA issuance MVP on Casper Testnet with compliance and identity-gated token coupon lifecycle.`
-- Website: `<BUIDL_OR_PROJECT_URL>`
-- Topics (minimum): `casper-blockchain`, `casper-network`, `buildathon`
-- Suggested extra topics: `rwa`, `compliance`, `ai-agent`, `odra`, `wasm`, `nextjs`
-
-
-## GitHub Community Standards
-
-Community profile target path: `https://github.com/skymiss18/casper-agentic-buildathon/community`
-
-Recommended files under `.github/` for full health score:
-
-- `.github/CODE_OF_CONDUCT.md`
-- `.github/CONTRIBUTING.md`
-- `.github/SECURITY.md`
-- `.github/SUPPORT.md`
-- Issue templates under `.github/ISSUE_TEMPLATE/`
-- Optional: `.github/pull_request_template.md`
-
-Current repository already includes CI workflow:
-
-- `.github/workflows/build-casper-contracts.yml`
-
-
-
-## Submission Readiness (DoraHacks)
-
-| Requirement | Status | Evidence |
-|---|---|---|
-| Working prototype on Casper Testnet with transaction-producing on-chain component | Complete | Deploy record in `app/data/deployments.json` |
-| Open-source repository with README and usage instructions | Complete | This repository + setup/run steps below |
-| Public demo video | Pending link update | Add final public URL in Demo section |
-
-## Security and CI
-
-### CI Status
-
-- Casper contract build/test workflow: `.github/workflows/build-casper-contracts.yml`
-- Builds Rust/Odra contracts and runs `cargo odra test` for key modules.
-
-### Security Configuration Checklist
-
-Enable and verify in GitHub repository settings:
-
-1. Code scanning (CodeQL default setup)
-2. Dependabot alerts
-3. Dependabot security updates
-4. Dependabot version updates (recommended)
-5. Secret scanning (if available for your plan)
-
-Submission target:
-
-- Open High/Critical alerts: **0**
-
-Suggested verification command for local dependency hygiene:
-
-```bash
-# Node ecosystem
-cd app && npm audit --audit-level=high
-
-# Rust ecosystem (install once: cargo install cargo-audit)
-cd app/contracts-casper && cargo audit
-```
-
-If any High/Critical issue appears, patch and re-run before final submission.
-
-
-
-
-## What This Project Does
-
-NexusRWA is a full workflow for regulated-style token issuance:
-
-1. AI drafts offering content from issuer inputs.
-2. AI scores the submission against SFC-oriented rules.
-3. Compliance score evidence is designed to be anchored to Casper via `ComplianceOracle` (contract implemented and unit-tested; Testnet deployment pending).
-4. Regulator and KYC admin remain human-in-the-loop.
-5. Minting/subscription flows are executed by authorized mint authority on Casper via the live `IdentityRegistry` and `TokenCoupon` contracts.
-6. Coupon metadata and investor balances are recorded on-chain.
-
-This repository focuses on a working Casper prototype for the buildathon round.
+| **CVI integration** | Encrypted A-Pass generation, query, overwrite confirmation, status/expiry checks, tier/sub-tier checks, and jurisdiction checks. |
+| **CVA integration** | A-Token launch and status synchronization with asset-specific rule packs and subscription gating on `ISSUED` status. |
+| **Fail-closed eligibility** | Missing, pending, frozen, expired, rejected, or provider-error states block subscription. |
+| **Payment integrity** | Sepolia ETH payment verification checks exact sender, treasury recipient, amount, receipt status, and confirmations. |
+| **Mint integrity** | Mint verification requires the configured administrator and the expected ERC-20 `Transfer` event from the zero address. |
+| **Coupon integrity** | Coupon reservations prevent duplicate payouts and verify the exact native ETH transfer before confirmation. |
+| **AI + human control** | AI accelerates drafting and review; intermediary and regulator decisions remain explicit. |
+| **Build quality** | Next.js 16, TypeScript, Viem/Wagmi, encrypted server APIs, wallet signatures, CI, and 22 Cleanverse integration tests. |
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-  A[Issuer inputs] --> B[AI Draft + Compliance Scoring]
-  B --> C[ComplianceOracle on Casper]
-  D[Regulator Review] --> C
-  E[KYC Admin Review] --> F[IdentityRegistry on Casper]
-  C --> G[Mint Authority Service]
-  F --> G
-  G --> H[TokenCoupon on Casper]
-  H --> I[Investor Balance and Coupon Records]
+  A[Issuer: asset and prospectus] --> B[AI drafting and compliance scoring]
+  B --> C[Licensed intermediary review]
+  C --> D[Regulator approval]
+  D --> E[CVA A-Token launch]
+
+  F[Investor KYC] --> G[Intermediary KYC and AML review]
+  G --> H[CVI A-Pass issuance]
+
+  E --> I[Subscription eligibility]
+  H --> I
+  I --> J[Sepolia ETH payment]
+  J --> K[Payment verification]
+  K --> L[A-Token mint]
+  L --> M[Portfolio and coupon distribution]
 ```
 
-## Agentic + Human-in-the-Loop Model
+## CVI: A-Pass Identity Compliance
 
-- AI is used for drafting, document analysis, and scoring assistance.
-- Regulator and KYC admin remain explicit decision makers.
-- Casper contracts store key issuance and lifecycle state.
-- Minting is protected by authorization (`owner` or `mint_authority`) at the contract level.
+An A-Pass answers **who may invest**.
 
-Note: In this buildathon prototype, some compliance gating is performed by authorized service logic that writes/executes on Casper, rather than all checks being embedded as direct cross-contract calls inside `token-coupon`.
+1. An investor submits KYC information and an Ethereum wallet.
+2. The licensed intermediary reviews KYC/AML evidence.
+3. Only an approved KYC record with an AI score of at least 70 can request an A-Pass.
+4. The server sends the A-Pass payload through the encrypted Cleanverse endpoint.
+5. NexusRWA queries the resulting identity record and evaluates:
+   - active or frozen status;
+   - expiration time;
+   - tier and sub-tier;
+   - jurisdiction;
+   - compatibility with the selected A-Token rule.
+6. Any failed or unavailable check blocks the subscription.
 
-## Application Routes
+The A-Pass is verified twice: when the payment intent is created and again before payment confirmation. This prevents a previously eligible investor from completing settlement after their status changes.
 
-UI routes under `app/src/app`:
+## CVA: A-Token Asset Compliance
 
-- `/prospectus`
-- `/tokenize`
-- `/compliance`
-- `/audit`
-- `/regulator`
-- `/kyc`
-- `/admin/kyc`
-- `/subscribe`
-- `/portfolio`
+An A-Token rule answers **what an eligible investor may hold**.
 
-API routes under `app/src/app/api` include:
+- Only internally `Approved` issuances can submit an A-Token launch request.
+- Supported asset rule packs:
+  - Bond
+  - Green Bond
+  - REIT
+  - Trade Receivable
+- Each rule can define minimum tier, minimum sub-tier, allowed groups, allowed sub-groups, and country allow/deny lists.
+- Launch requests and sensitive payloads use the encrypted Cleanverse client.
+- Subscription opens only when Cleanverse returns `ISSUED` with a valid A-Token address.
+- Cleanverse verification code `4` is required before payment can proceed.
 
-- `/api/tokenize/*`
-- `/api/compliance/*`
-- `/api/kyc/*`
-- `/api/subscribe/*`
-- `/api/portfolio/*`
-- `/api/audit/*`
-- `/api/advisor/*`
+## Supported Roles
+
+| Role | Responsibilities | Main routes |
+|---|---|---|
+| **Issuer** | Structure assets, draft disclosures, launch A-Tokens, verify paid subscriptions, mint allocations, and distribute coupons. | `/tokenize`, `/prospectus`, `/admin/subscriptions`, `/admin/coupons` |
+| **Licensed Intermediary** | Perform compliance review and technical due diligence; review KYC/AML; issue, update, or revoke investor credentials. | `/compliance`, `/admin/kyc`, `/evidence` |
+| **Regulator** | Review issuance and compliance evidence, monitor status, approve an issuance, or request changes. | `/regulator`, `/regulator/issuance` |
+| **Investor** | Submit KYC, connect an eligible wallet, subscribe, pay, and track holdings and yield. | `/kyc`, `/subscribe`, `/portfolio` |
+
+## End-to-End Workflow
+
+1. **Draft** — the issuer creates an offering and uses AI-assisted prospectus tools.
+2. **Score** — the platform evaluates the submission against SFC-oriented rules.
+3. **Review** — the licensed intermediary performs pre-filing and technical review.
+4. **Approve** — the regulator approves the issuance or requests changes.
+5. **Launch** — the issuer submits a CVA A-Token launch request and synchronizes its status.
+6. **KYC** — the investor submits identity and eligibility evidence.
+7. **Issue A-Pass** — approved KYC is converted into a Cleanverse CVI identity record.
+8. **Verify** — NexusRWA combines A-Pass state with the A-Token rule.
+9. **Pay** — an eligible investor sends the exact quoted Sepolia ETH amount.
+10. **Settle** — the backend verifies the transaction; the administrator mints the allocation.
+11. **Service** — the investor sees the position in the portfolio and the issuer distributes coupons.
+
+## Deployment Evidence
+
+### Cleanverse A-Token
+
+- Network: Ethereum
+- Status: `ISSUED`
+- Symbol: `BND525123`
+- A-Token address: [`0xc7ce7F96B92EC7fDf13D16E5448c092A8F0743ad`](https://sepolia.etherscan.io/address/0xc7ce7F96B92EC7fDf13D16E5448c092A8F0743ad)
+- Issuance transaction: [`0x8282b2be76e577902d0e2ee3ab417d61b53e872944219e812b498bac767e5c1b`](https://sepolia.etherscan.io/tx/0x8282b2be76e577902d0e2ee3ab417d61b53e872944219e812b498bac767e5c1b)
+- Local evidence record: `app/data/cleanverse-atoken-applications.json`
+
+A second issued A-Token is also recorded in the same evidence file. Pending applications never open for subscription.
+
+## Cleanverse API Integration
+
+| Route | Method | Purpose |
+|---|---|---|
+| `/api/cleanverse/apass/generate` | `POST` | Generate an A-Pass from approved KYC. |
+| `/api/cleanverse/apass/query` | `GET` | Query current A-Pass status and attributes. |
+| `/api/cleanverse/atoken/launch` | `GET`, `POST` | Read or submit an A-Token launch application. |
+| `/api/cleanverse/atoken/status` | `GET` | Synchronize A-Token application and issuance status. |
+| `/api/subscribe` | `POST` | Evaluate eligibility, create a payment intent, and confirm payment. |
+| `/api/subscription/eligibility` | `GET` | Return the current CVI/CVA eligibility decision. |
+| `/api/admin/subscriptions` | `GET` | List settlement records for administrator action. |
+| `/api/admin/coupons` | `GET` | List coupon obligations derived from A-Token balances. |
+
+Cleanverse write payloads are encrypted server-side. `CLEANVERSE_API_ID` and `CLEANVERSE_API_KEY` must never be exposed through `NEXT_PUBLIC_*` variables.
 
 ## Technology Stack
 
-- Frontend: Next.js, React, TypeScript, Tailwind CSS
-- Casper contracts: Rust + Odra + WASM
-- EVM fallback contracts (secondary path): Solidity + Hardhat
-- AI layer: OpenAI-compatible provider and rule-based scoring pipeline
-- Data artifacts: local JSON registries in `app/data`
+- **Frontend:** Next.js 16, React 19, TypeScript, Tailwind CSS
+- **Wallet and chain access:** Wagmi, Viem, RainbowKit
+- **Network:** Ethereum Sepolia for the current test flow
+- **Compliance:** Cleanverse CVI A-Pass and CVA A-Token APIs
+- **AI:** OpenAI-compatible provider plus deterministic rule evaluation
+- **Testing:** Node test runner with TSX
+- **Prototype state:** JSON registries under `app/data`
 
 ## Quick Start
 
+### Prerequisites
+
+- Node.js 20+
+- npm
+- Cleanverse UAT credentials
+- An Ethereum Sepolia RPC endpoint
+- A Sepolia wallet funded for payment and administration flows
+
+### Install and run
+
 ```bash
-git clone <repo>
-cd casper-agentic-buildathon/app
+git clone https://github.com/skymiss18/cleanverseRWA.git
+cd cleanverseRWA/app
 npm install
+copy .env.example .env.local
 npm run dev
 ```
 
-Open: http://localhost:3000
+Open [http://localhost:3000](http://localhost:3000).
 
-## Environment
+On macOS or Linux, replace the `copy` command with:
 
-Create `app/.env.local`:
+```bash
+cp .env.example .env.local
+```
+
+## Minimal Environment Configuration
+
+Set these values in `app/.env.local`:
 
 ```env
-CASPER_CHAIN_NAME=casper-test
-CASPER_RPC_URL=https://rpc.testnet.casperlabs.io
-CASPER_DEPLOY_TIMEOUT_MS=300000
+# Cleanverse server credentials
+CLEANVERSE_BASE_URL=https://uatapi.cleanverse.com/api/cooperate
+CLEANVERSE_API_ID=<api-id>
+CLEANVERSE_API_KEY=<base64-encoded-aes-key>
+CLEANVERSE_DEFAULT_CHAIN=ethereum
+CLEANVERSE_REQUEST_TIMEOUT_MS=15000
+CLEANVERSE_DEFAULT_APASS_SUB_TIER=40
 
-CASPER_ORACLE_KEY=<ed25519-private-key-hex>
-CASPER_ORACLE_PUBLIC_KEY=<ed25519-public-key-hex>
-CASPER_TREASURY_PUBLIC_KEY=<ed25519-public-key-hex>
+# A-Token launch defaults
+CLEANVERSE_GREEN_BOND_ICON_URL=<https-image-url>
+CLEANVERSE_GREEN_BOND_MIN_TIER=30
+CLEANVERSE_GREEN_BOND_MIN_SUB_TIER=0
+CLEANVERSE_GREEN_BOND_COUNTRY_MODE=whitelist
+CLEANVERSE_GREEN_BOND_COUNTRIES=HK,SG
 
-SILICONFLOW_API_KEY=<api-key>
-# or
-OPENAI_API_KEY=<api-key>
+# Ethereum settlement
+SUBSCRIPTION_TREASURY_ADDRESS=<0x-address>
+SUBSCRIPTION_ETH_PER_USD=0.001
+SUBSCRIPTION_PAYMENT_CONFIRMATIONS=1
+SUBSCRIPTION_MINT_CONFIRMATIONS=1
+CLEANVERSE_ATOKEN_DECIMALS=6
 
-# Sepolia ETH coupon distribution
+# Coupon distribution
 COUPON_ID=2026-Q3
 COUPON_ETH_PER_TOKEN=0.0001
 COUPON_PAYMENT_CONFIRMATIONS=1
-# Optional: defaults to app/data/cleanverse-coupon-distributions.json
-CLEANVERSE_COUPON_STORE_PATH=<absolute-json-store-path>
+
+# Browser wallet and RPC
+NEXT_PUBLIC_WALLET_CHAIN_ID=11155111
+NEXT_PUBLIC_ETHEREUM_SEPOLIA_RPC_URL=https://ethereum-sepolia-rpc.publicnode.com
+
+# AI provider
+OPENAI_API_KEY=<api-key>
 ```
 
-## Build Casper WASM Contracts
+Optional asset-specific variables use the prefixes `CLEANVERSE_BOND_*`, `CLEANVERSE_GREEN_BOND_*`, `CLEANVERSE_REIT_*`, and `CLEANVERSE_TRADE_RECEIVABLE_*`.
 
-```bash
-cargo install cargo-odra --locked
-cd app/contracts-casper/compliance-oracle && cargo odra build -b casper
-cd app/contracts-casper/identity-registry && cargo odra build -b casper
-cd app/contracts-casper/token-coupon && cargo odra build -b casper
-```
+## Tests and Build
 
-## Deploy to Casper Testnet (PowerShell)
-
-```powershell
-.\deploy-casper-contracts.ps1 -AccountKey <ed25519-hex> -PublicKey <pub-hex>
-```
-
-Testnet faucet: https://testnet.cspr.live/tools/faucet
-
-## Reproducible Evidence Commands
-
-From repository root:
-
-```powershell
-node test-subscribe.mjs
-node test-payment-verification.mjs
-node test-mint-error.mjs
-```
-
-From `app` directory:
-
-```powershell
-node test-deploy-server.cjs
-```
-
-## Reviewer Playbook (No Marketing, 8-12 Minutes)
-
-This flow is intended for judges to validate functionality quickly.
-
-### Prerequisites
-
-1. Node.js 20+ and npm installed
-2. Rust toolchain available for contract build checks
-3. Testnet-funded Casper account if redeployment is needed
-4. `app/.env.local` configured
-
-### Step-by-Step Validation
-
-1. Install and run app
+Run the Cleanverse integration suite:
 
 ```bash
 cd app
-npm install
-npm run dev
+npm run test:cleanverse
 ```
 
-Expected: local UI opens at `http://localhost:3000` with tokenize/compliance/kyc/subscribe routes available.
+The suite currently covers 22 behaviors, including:
 
-2. Build Casper contracts
+- encrypted Cleanverse requests and error handling;
+- A-Pass generation, overwrite confirmation, and eligibility;
+- frozen, expired, pending, rejected, and provider-error fail-closed paths;
+- A-Token launch and status synchronization;
+- exact ETH payment verification and confirmation handling;
+- exact A-Token mint event verification;
+- coupon calculation, reservation, duplicate prevention, and payment verification;
+- Ethereum wallet validation.
+
+Run lint and production build:
 
 ```bash
-cd app/contracts-casper/compliance-oracle && cargo odra build -b casper
-cd ../identity-registry && cargo odra build -b casper
-cd ../token-coupon && cargo odra build -b casper
+npm run lint
+npm run build
 ```
 
-Expected: WASM outputs generated without build errors.
+## Reviewer Demo Path
 
-3. Verify deployment evidence
+A complete review can be performed in this order:
 
-Inspect `app/data/deployments.json` and open listed explorer URL.
-
-Expected: Casper Testnet deploy exists and status is successful.
-
-4. Run scripted behavior checks
-
-```bash
-cd <repo-root>
-node test-subscribe.mjs
-node test-payment-verification.mjs
-node test-mint-error.mjs
+```text
+/prospectus
+  -> /compliance
+  -> /regulator/issuance
+  -> /tokenize
+  -> /kyc
+  -> /admin/kyc
+  -> /subscribe
+  -> /admin/subscriptions
+  -> /portfolio
+  -> /admin/coupons
 ```
 
-Expected:
+Recommended validation points:
 
-- subscribe flow executes and records expected state
-- payment verification script passes
-- unauthorized mint scenario fails as designed
+1. Approve an issuance and launch an A-Token.
+2. Synchronize until the application is `ISSUED`.
+3. Approve investor KYC and generate an A-Pass.
+4. Show that an ineligible or expired identity cannot create a payment intent.
+5. Create a valid payment intent and verify the exact Sepolia transaction.
+6. Verify the administrator mint transaction and inspect the investor position.
+7. Reserve and confirm a coupon distribution without allowing duplicates.
 
-5. Validate API-backed route coverage
+## Project Documents
 
-Manually visit and test:
+- [English one-page summary](document/Cleanverse_OnePage_Summary_EN_v7.pdf)
+- [Chinese one-page summary](document/Cleanverse_OnePage_Summary_CN.pdf)
+- [English summary source](document/Cleanverse_OnePage_Summary_EN.md)
+- [Chinese summary source](document/Cleanverse_OnePage_Summary_CN.md)
+- [Sample bond prospectus](document/HIBT-Prospectus.txt)
 
-- `/prospectus`
-- `/tokenize`
-- `/compliance`
-- `/regulator`
-- `/kyc`
-- `/admin/kyc`
-- `/subscribe`
-- `/portfolio`
+## Security Notes
 
-Expected: end-to-end workflow is navigable and actions produce corresponding data artifacts/API responses.
-
-### What to Put on DoraHacks/BUIDL Page
-
-1. Core contract package hash + contract hash + deploy hash
-2. 3-5 representative Testnet transactions with one-line purpose each
-3. Public demo video URL
-4. Short reproducible test steps (copy from this section)
-
-## How This Project Meets Buildathon Eligibility
-
-| Eligibility Criterion (from `document/finalround.md`) | This Project |
-|---|---|
-| Team size unrestricted | Submitted as a single repository, works for solo or team credit |
-| Original, newly developed code/content for the buildathon | All code, contracts, and rules in this repository were built for this event |
-| Focus on Agentic AI with DeFi and/or RWA on Casper | AI-driven compliance scoring + identity-gated token issuance on Casper Testnet |
-| Fair play / anti-plagiarism / Code of Conduct | Followed throughout development; no third-party proprietary code reused |
-
-Official reference dates: Qualification Round opens June 1, 2026; submission deadline July 7, 2026; Final Round runs July 13-26, 2026.
+- Keep Cleanverse credentials and AI provider keys server-side.
+- Use a dedicated treasury and administrator wallet for test environments.
+- Payment verification requires exact sender, recipient, value, success status, and confirmation count.
+- Mint verification requires the configured administrator and exact mint event values.
+- Coupon reservations are keyed by issuance, coupon, and investor to prevent duplicate payouts.
+- The current JSON stores are suitable for a reproducible prototype, not concurrent production workloads. Replace them with a transactional database and durable job queue before production use.
+- Run dependency scanning and secret scanning before deployment.
 
 ## Roadmap
 
-### Next 3 Months
-
-- Harden Casper deployment reliability and monitoring.
-- Add deterministic verification script for AI report hash to reduce trust assumptions.
-- Improve judge-facing demo automation for full issuance walkthrough.
-
-### Next 6-12 Months
-
-- Expand jurisdictional rule packs (beyond current SFC-focused set).
-- Increase automation for compliance lifecycle events with stricter controls.
-- Package the workflow as compliance tooling for institutional issuers.
-
-## Repository Structure
-
-```text
-app/
-  compliance-rules/
-    sfc-rules.json
-  contracts-casper/
-    compliance-oracle/
-    identity-registry/
-    token-coupon/
-  data/
-    deployments.json
-    kyc-inbox.json
-    sfc-inbox.json
-  src/
-    app/
-    lib/
-```
-
-
+- Replace local JSON registries with a transactional database and immutable audit log.
+- Add webhook-driven A-Token status synchronization and retry handling.
+- Expand jurisdiction and asset rule packs.
+- Add continuous A-Pass monitoring and automated suspension workflows.
+- Add multisig administration, reconciliation exports, and institutional reporting.
+- Harden observability, key management, and disaster recovery for production deployment.
 
 ## License
 

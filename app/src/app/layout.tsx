@@ -53,7 +53,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       Ethereum Sepolia
                     </span>
                     <span>SFC Circular (Oct 2023)</span>
-                    <span>Turing Test Hackathon 2026</span>
                   </div>
                 </div>
               </footer>

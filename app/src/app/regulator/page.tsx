@@ -10,11 +10,7 @@ import { useState } from "react";
 
 
 
-const EXPLORER = process.env.NEXT_PUBLIC_CHAIN_ID === "5000"
-
-  ? "https://cspr.live/deploy/"
-
-  : "https://testnet.cspr.live/deploy/";
+const EXPLORER = "https://sepolia.etherscan.io/tx/";
 
 
 
@@ -104,11 +100,11 @@ const RECORDS = [
 
     id: "OC-2026-005",
 
-    asset: "Casper Sovereign Bond Token",
+    asset: "Nexus Sovereign Bond Token",
 
     type: "Bond",
 
-    issuer: "Casper Financial Group",
+    issuer: "Nexus Financial Group",
 
     score: 65,
 

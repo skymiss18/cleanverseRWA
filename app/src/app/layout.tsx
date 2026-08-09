@@ -50,7 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <div className="flex items-center gap-5">
                     <span className="flex items-center gap-1.5">
                       <span className="w-1 h-1 rounded-full bg-emerald-500" />
-                      Casper Network
+                      Ethereum Sepolia
                     </span>
                     <span>SFC Circular (Oct 2023)</span>
                     <span>Turing Test Hackathon 2026</span>

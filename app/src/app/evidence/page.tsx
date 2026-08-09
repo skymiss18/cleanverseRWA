@@ -70,9 +70,9 @@ function shortHash(value: string | null | undefined) {
   return `${value.slice(0, 12)}...${value.slice(-8)}`;
 }
 
-function explorerForDeploy(hash: string | null | undefined) {
+function explorerForTransaction(hash: string | null | undefined) {
   if (!hash) return null;
-  return `https://testnet.cspr.live/deploy/${hash}`;
+  return `https://sepolia.etherscan.io/tx/${hash}`;
 }
 
 function countMatches(filePath: string, pattern: RegExp): number {
@@ -89,13 +89,12 @@ function countMatches(filePath: string, pattern: RegExp): number {
  *  hardcoded number) so the Verification Ledger never goes stale. */
 function computeVerificationLedger() {
   const root = process.cwd();
-  const rustCrates = ["identity-registry", "compliance-oracle", "token-coupon"];
-  const rustTests = rustCrates.reduce(
-    (sum, crateName) => sum + countMatches(path.join(root, "contracts-casper", crateName, "src", "lib.rs"), /#\[test\]/g),
-    0,
+  const contractTests = countMatches(
+    path.join(root, "contracts", "test", "CleanversePoolAdapter.test.ts"),
+    /^\s*it\(/gm,
   );
   const e2eTests = countMatches(path.join(root, "test", "agent-kyc-e2e.test.ts"), /^test\(/gm);
-  return { rustTests, e2eTests, totalTests: rustTests + e2eTests };
+  return { contractTests, e2eTests, totalTests: contractTests + e2eTests };
 }
 
 export default async function EvidencePage() {
@@ -208,8 +207,8 @@ export default async function EvidencePage() {
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
           <div className="rounded-lg p-3" style={{ background: "rgba(29,78,216,0.05)", border: "1px solid rgba(29,78,216,0.15)" }}>
-            <div className="text-slate-500">Odra Contract Unit Tests</div>
-            <div className="text-lg font-bold text-blue-700">{verificationLedger.rustTests}</div>
+            <div className="text-slate-500">Solidity Contract Unit Tests</div>
+            <div className="text-lg font-bold text-blue-700">{verificationLedger.contractTests}</div>
           </div>
           <div className="rounded-lg p-3" style={{ background: "rgba(29,78,216,0.05)", border: "1px solid rgba(29,78,216,0.15)" }}>
             <div className="text-slate-500">Agent/KYC E2E Tests</div>
@@ -243,7 +242,7 @@ export default async function EvidencePage() {
             <tbody>
               {deploymentRows.map((row) => {
                 const hash = row.deployHash ?? row.txHash ?? "";
-                const explorer = row.explorerUrl ?? explorerForDeploy(hash);
+                const explorer = row.explorerUrl ?? explorerForTransaction(hash);
                 return (
                   <tr key={row.id} className="border-b" style={{ borderColor: "rgba(0,0,0,0.06)" }}>
                     <td className="py-2 pr-3 font-mono text-blue-700">{row.id}</td>
@@ -309,7 +308,7 @@ export default async function EvidencePage() {
                     {row.explorerUrl || row.txHash ? (
                       <a
                         className="text-blue-600 hover:underline"
-                        href={row.explorerUrl ?? explorerForDeploy(row.txHash ?? "") ?? "#"}
+                        href={row.explorerUrl ?? explorerForTransaction(row.txHash ?? "") ?? "#"}
                         target="_blank"
                         rel="noreferrer"
                       >

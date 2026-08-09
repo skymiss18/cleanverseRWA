@@ -22,9 +22,7 @@ interface Application {
   sponsorLicence?: string;
 }
 // ── Demo data ────────────────────────────────────────────────────────────
-const EXPLORER = process.env.NEXT_PUBLIC_CHAIN_ID === "5000"
-  ? "https://cspr.live/deploy/"
-  : "https://testnet.cspr.live/deploy/";
+const EXPLORER = "https://sepolia.etherscan.io/tx/";
 const INITIAL_APPS: Application[] = [];
 const TYPE_META: Record<string, { color: string; bg: string; border: string; label: string; regRef: string }> = {
   Bond:            { color: "#1a56db", bg: "rgba(96,165,250,0.1)",   border: "rgba(96,165,250,0.3)",   label: "Fixed Income / Bond",       regRef: "SFO s.103 · SFC Circular on Tokenisation (Nov 2023)" },
